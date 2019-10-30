@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.orient.firecontrol_web_demo.dao.alarm.AlarmDao">
+
+    <insert id="insert">
+        INSERT INTO tb_alarm (devicecode,alarmtime,alarmdetail,alarmgrade,ishandler)
+        VALUES (#{deviceCode},#{alarmTime},#{alarmDetail},#{alarmGrade},#{isHandler})
+    </insert>
+
+    <update id="updateStatus">
+        UPDATE tb_alarm SET ishandler  = #{isHandler} WHERE devicecode = #{deviceCode}
+    </update>
+
+    <select id="findOne" resultType="com.orient.firecontrol_web_demo.model.alarm.AlarmInfo">
+        SELECT devicecode,alarmtime,alarmdetail,alarmgrade,ishandler FROM tb_alarm
+        WHERE devicecode = #{devicecode}
+    </select>
+</mapper>

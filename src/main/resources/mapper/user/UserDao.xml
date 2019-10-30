@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.orient.firecontrol_web_demo.dao.user.UserDao">
+    <resultMap id="ConnectMap" type="com.orient.firecontrol_web_demo.model.user.User">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="account" column="account" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="regTime" column="regtime" jdbcType="TIMESTAMP"/>
+        <result property="enable" column="enable" jdbcType="INTEGER"/>
+        <association property="organization" javaType="com.orient.firecontrol_web_demo.model.organization.OrganizationDto">
+            <result property="organizationName" column="organ_name" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="BaseMap" type="com.orient.firecontrol_web_demo.model.user.User">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="account" column="account" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="regTime" column="regtime" jdbcType="TIMESTAMP"/>
+        <result property="enable" column="enable" jdbcType="INTEGER"/>
+        <result property="organId" column="organ_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <insert id="addUser" parameterType="com.orient.firecontrol_web_demo.model.user.User">
+        INSERT INTO tb_user (account,password,username,regtime,organ_id,enable) VALUES (#{account},#{password},#{username},#{regTime},#{organId},#{enable})
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM tb_user WHERE id = #{id}
+    </delete>
+    <select id="findOneByAccount" resultMap="BaseMap">
+        SELECT id,account,password,username,regtime,enable,organ_id FROM tb_user WHERE account = #{account}
+    </select>
+    <select id="findAll" resultMap="ConnectMap">
+        SELECT u.id,u.account,u.password,u.username,u.regtime,o.organ_name FROM tb_user u LEFT JOIN tb_organization o
+        ON o.id = u.organ_id
+    </select>
+    <select id="findByUserId" resultMap="BaseMap">
+        SELECT id,account,password,username,regtime,enable,organ_id FROM tb_user WHERE id = #{id}
+    </select>
+    <select id="findOrganIDBy" resultType="java.lang.Integer">
+        SELECT organ_id FROM tb_user WHERE account = #{account}
+    </select>
+
+    <select id="findByOrganId" resultMap="ConnectMap">
+        SELECT u.id,u.account,u.password,u.username,u.regtime,o.organ_name FROM tb_user u LEFT JOIN tb_organization o
+        ON o.id = u.organ_id
+        WHERE u.organ_id = #{organId}
+    </select>
+
+
+    <update id="changeUserStatus">
+        UPDATE tb_user
+        SET enable = (CASE WHEN enable = 1 THEN 0 ELSE 1 END)
+        WHERE id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.orient.firecontrol_web_demo.dao.device.Device02Dao">
+    <insert id="insertDevice02Measure">
+        INSERT INTO tb_device2_measure (branchElec,branchTemp)
+        VALUES (#{branchElec},#{branchTemp})
+    </insert>
+</mapper>
