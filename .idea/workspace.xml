@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="60231d32-1611-4f9a-ba84-ad59859bbe9f" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/RoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/RoleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserRoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserRoleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/user/RoleDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/user/RoleDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/orient/firecontrol_web_demo/FirecontrolWebDemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orient/firecontrol_web_demo/FirecontrolWebDemoApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/exception/ExceptionAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/exception/ExceptionAdvice.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/jwt/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/jwt/JwtFilter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/jwt/JwtToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/jwt/JwtToken.class" afterDir="false" />
@@ -42,8 +35,8 @@
       <file leaf-file-name="UserService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="194" column="74" selection-start-line="194" selection-start-column="74" selection-end-line="194" selection-end-column="74" />
+            <state relative-caret-position="137">
+              <caret line="191" column="46" lean-forward="true" selection-start-line="191" selection-start-column="46" selection-end-line="191" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-733">
-              <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+              <caret line="102" column="41" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -508,7 +501,7 @@
       <workItem from="1572226056561" duration="14858000" />
       <workItem from="1572312366278" duration="20491000" />
       <workItem from="1572352000493" duration="11466000" />
-      <workItem from="1572399149821" duration="18519000" />
+      <workItem from="1572399149821" duration="19113000" />
     </task>
     <task id="LOCAL-00001" summary="2019-10-30 11:45:00">
       <created>1572407590632</created>
@@ -524,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572416502140</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="2019-10-30 11:45:00">
+      <created>1572427751970</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572427751970</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -548,10 +548,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="246831000" />
+    <option name="totallyTimeSpent" value="247425000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Event Log" order="16" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="9" />
@@ -1035,7 +1036,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-733">
-          <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+          <caret line="102" column="41" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1044,8 +1045,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="194" column="74" selection-start-line="194" selection-start-column="74" selection-end-line="194" selection-end-column="74" />
+        <state relative-caret-position="137">
+          <caret line="191" column="46" lean-forward="true" selection-start-line="191" selection-start-column="46" selection-end-line="191" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
