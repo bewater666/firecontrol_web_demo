@@ -3,6 +3,7 @@ package com.orient.firecontrol_web_demo.model.user;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Accessors(chain = true)
 public class UserRole implements Serializable {
     private static final long serialVersionUID = -851363308007467865L;
 

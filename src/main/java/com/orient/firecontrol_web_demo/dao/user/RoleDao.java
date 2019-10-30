@@ -30,4 +30,11 @@ public interface RoleDao {
     List<Role> findByuserId(Integer userId);
 
     Role findByRoleId(Integer roleId);
+
+    /**
+     * 根据账户查询角色id  前端需要
+     * @param account
+     * @return
+     */
+    Integer findRoleIdByAccount(String account);
 }

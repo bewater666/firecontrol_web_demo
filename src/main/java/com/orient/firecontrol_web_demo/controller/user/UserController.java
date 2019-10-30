@@ -1,6 +1,5 @@
 package com.orient.firecontrol_web_demo.controller.user;
 
-import com.orient.firecontrol_web_demo.config.common.StringUtil;
 import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.config.exception.CustomUnauthorizedException;
 import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
@@ -11,11 +10,13 @@ import com.orient.firecontrol_web_demo.dao.user.UserDao;
 import com.orient.firecontrol_web_demo.dao.user.UserRoleDao;
 import com.orient.firecontrol_web_demo.model.common.Constant;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
-import com.orient.firecontrol_web_demo.model.user.*;
+import com.orient.firecontrol_web_demo.model.user.LoginUser;
+import com.orient.firecontrol_web_demo.model.user.User;
+import com.orient.firecontrol_web_demo.model.user.UserDto;
+import com.orient.firecontrol_web_demo.model.user.UserRole;
 import com.orient.firecontrol_web_demo.service.user.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author bewater
@@ -102,41 +100,10 @@ public class UserController {
     @PostMapping("/add")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "新增用户接口",notes = "超级管理员添加的是单位领导(默认) 赋予添加的员工admin角色  需要传organId  " +
-            "单位领导添加的默认是该单位下的员工  员工的角色后期自己赋予")
-    public ResultBean add(@RequestBody @ApiParam(name = "用户bean",value = "传入json格式",required = true) User user) {
-        // 判断当前帐号是否存在
-        User oneByAccount = userDao.findOneByAccount(user.getAccount());
-        if (oneByAccount != null && StringUtil.isNotBlank(oneByAccount.getPassword())) {
-            return new ResultBean(201, "新增用户失败,该账号已存在", null);
-        }
-        user.setRegTime(new Date());
-        // 密码以帐号+密码的形式进行AES加密
-        if (user.getPassword().length() > Constant.PASSWORD_MAX_LEN) {
-            return new ResultBean(201, "密码不得超过8位", null);
-        }
-        String key = AesCipherUtil.enCrypto(user.getAccount() + user.getPassword());
-        user.setPassword(key);
-        String account = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT); //获得当前登录的用户
-        //根据账户获得它具有的角色列表
-        List<Role> byUser = roleDao.findByUser(account);
-        //我这里一个账户只有一个角色  所以取第一个就好
-        if (byUser.get(0).getRoleName().equals("superadmin")){ //若是超级管理员 那这里添加某单位的领导
-            //添加的用户默认可用
-            user.setEnable(1);
-            userDao.addUser(user);
-            return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");
-        }
-        if (byUser.get(0).getRoleName().equals("admin")){
-            //这里organId直接获取 前端传错了也没关系
-            Integer organIDBy = userDao.findOrganIDBy(account);
-            //将要插入的用户信息中的单位id和 操作人的单位id一致
-            user.setOrganId(organIDBy);
-            //添加的用户默认可用
-            user.setEnable(1);
-            userDao.addUser(user);
-            return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");
-        }
-        return null;
+            "单位领导添加的默认是该单位下的员工organId就不重要  员工的角色后期自己赋予")
+    public ResultBean add(@RequestBody @ApiParam(name = "用户bean",value = "传入json格式",required = true) User user
+                            ,@RequestParam @ApiParam(name = "roleId",value = "角色id",required = true) Integer roleId) {
+        return userService.addUser(user, roleId);
     }
 
 
@@ -169,7 +136,11 @@ public class UserController {
             String token = JwtUtil.sign(user.getAccount(), currentTimeMillis);
             httpServletResponse.setHeader("Authorization", token);
             httpServletResponse.setHeader("Access-Control-Expose-Headers", "Authorization");
-            return new ResultBean(HttpStatus.OK.value(), "登录成功(Login Success.)", token);
+            Map<String,String> map = new HashMap<>();
+            Integer roleId = roleDao.findRoleIdByAccount(user.getAccount());
+            map.put("TOKEN", token);
+            map.put("roleId", String.valueOf(roleId));
+            return new ResultBean(HttpStatus.OK.value(), "登录成功(Login Success.)", map);
         } else {
             throw new CustomUnauthorizedException("帐号或密码错误(Account or Password Error.)");
         }

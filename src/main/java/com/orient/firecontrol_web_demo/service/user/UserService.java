@@ -1,6 +1,8 @@
 package com.orient.firecontrol_web_demo.service.user;
 
+import com.orient.firecontrol_web_demo.config.common.StringUtil;
 import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
+import com.orient.firecontrol_web_demo.config.password.AesCipherUtil;
 import com.orient.firecontrol_web_demo.config.shiro.UserRealm;
 import com.orient.firecontrol_web_demo.dao.user.RoleDao;
 import com.orient.firecontrol_web_demo.dao.user.UserDao;
@@ -12,9 +14,11 @@ import com.orient.firecontrol_web_demo.model.user.User;
 import com.orient.firecontrol_web_demo.model.user.UserRole;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -139,6 +143,61 @@ public class UserService {
     public ResultBean checkRoles(Integer userId){
         List<Role> byuserId = roleDao.findByuserId(userId);
         return new ResultBean(200, "查询成功", byuserId);
+    }
+
+
+    /**
+     * 管理员新增用户操作
+     * 超级管理员添加的是单位领导(默认) 赋予添加的员工admin角色  需要传organId
+     * 单位领导添加的默认是该单位下的员工  不要要穿organId 从登录的账户中获得  员工的角色后期自己赋予
+     * @return
+     */
+    @Transactional
+    public ResultBean addUser(User user,Integer roleId){
+        // 判断当前帐号是否存在
+        User oneByAccount = userDao.findOneByAccount(user.getAccount());
+        if (oneByAccount != null && StringUtil.isNotBlank(oneByAccount.getPassword())) {
+            return new ResultBean(201, "新增用户失败,该账号已存在", null);
+        }
+        // 密码以帐号+密码的形式进行AES加密
+        if (user.getPassword().length() > Constant.PASSWORD_MAX_LEN) {
+            return new ResultBean(201, "密码不得超过8位", null);
+        }
+        user.setRegTime(new Date());
+        String key = AesCipherUtil.enCrypto(user.getAccount() + user.getPassword());
+        user.setPassword(key);
+        String account = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT); //获得当前登录的用户
+        //根据账户获得它具有的角色列表
+        List<Role> byUser = roleDao.findByUser(account);
+        //我这里一个账户只有一个角色  所以取第一个就好
+        if (byUser.get(0).getRoleName().equals("superadmin")){ //若是超级管理员 那这里添加某单位的领导
+            //添加的用户默认可用
+            user.setEnable(1);
+            userDao.addUser(user);
+            Integer userId = userDao.findOneByAccount(user.getAccount()).getId();
+            UserRole userRole =new UserRole();
+            userRole.setUserId(userId).setRoleId(2);//因为是超级管理员 所以我默认给他添加单位领导角色了
+            userRoleDao.addUser_Role(userRole);
+            return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");
+        }
+        if (byUser.get(0).getRoleName().equals("admin")){
+            //这里organId直接获取 前端传错了也没关系
+            Integer organIDBy = userDao.findOrganIDBy(account);
+            //将要插入的用户信息中的单位id和 操作人的单位id一致
+            user.setOrganId(organIDBy);
+            //添加的用户默认可用
+            user.setEnable(1);
+            userDao.addUser(user);
+            Integer userId = userDao.findOneByAccount(user.getAccount()).getId();
+            UserRole userRole =new UserRole();
+            userRole.setUserId(userId).setRoleId(roleId);//这里 单位管理员可以添加 两个角色  角色id前端传入
+            if (roleId<=2){
+                return new ResultBean(201, "给新增用户设置角色失败(设置权限等级过高)", null);
+            }
+            userRoleDao.addUser_Role(userRole);
+            return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");
+        }
+        return null;
     }
 
 }

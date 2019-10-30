@@ -35,5 +35,6 @@ public interface UserRoleDao {
      * @return
      */
     int updateUser_Role(UserRole userRole);
+
 }
 
