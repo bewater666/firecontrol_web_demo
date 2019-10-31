@@ -124,6 +124,13 @@
             <version>2.6.1</version>
         </dependency>
         <!--swagger2结束-->
+
+        <!--AOP开始-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!--AOP结束-->
     </dependencies>
 
     <build>
