@@ -1,5 +1,6 @@
 package com.orient.firecontrol_web_demo.service.organ;
 
+import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
 import com.orient.firecontrol_web_demo.dao.organization.OrganDao;
 import com.orient.firecontrol_web_demo.dao.user.RoleDao;
@@ -62,11 +63,11 @@ public class OrganService {
     public ResultBean addOrgan(Organization organization){
         Organization byOrganName = organDao.findByOrganName(organization.getOrganizationName());
         if (byOrganName!=null){
-            return new ResultBean(201, "新建单位失败(该单位已存在)", null);
+            throw new CustomException("新建单位失败(该单位已存在)");
         }
         int i = organDao.addOrgan(organization);
         if (i<=0){
-            return new ResultBean(201, "新建单位失败", null);
+            throw new CustomException( "新建单位失败");
         }
         return new ResultBean(200, "新建单位成功", null);
     }
@@ -80,11 +81,11 @@ public class OrganService {
     public ResultBean updateOrgan(OrganizationDto organizationDto){
         Organization byId = organDao.findById(organizationDto.getId());
         if (byId==null){
-            return new ResultBean(201, "更新单位失败(该单位不存在)", null);
+            throw new CustomException("更新单位失败(该单位不存在)");
         }
         int i = organDao.updateOrgan(organizationDto);
         if (i<=0){
-            return new ResultBean(201, "更新单位名称失败", null);
+            throw new CustomException("更新单位名称失败");
         }
         return new ResultBean(200, "更新单位名称成功", null);
     }

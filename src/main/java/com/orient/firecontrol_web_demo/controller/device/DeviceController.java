@@ -1,5 +1,6 @@
 package com.orient.firecontrol_web_demo.controller.device;
 
+import com.orient.firecontrol_web_demo.config.aop.MyLog;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
 import com.orient.firecontrol_web_demo.model.device.DeviceInfo;
 import com.orient.firecontrol_web_demo.service.device.DeviceService;
@@ -36,6 +37,7 @@ public class DeviceController {
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "查询建筑物下的设备列表",notes = "根据建筑物id 查询该建筑物下的设备列表")
     @ApiImplicitParam(name = "id",value = "建筑物id",required = true,dataType = "int",paramType = "path")
+//    @MyLog(description = "查询建筑物下设备")
     public ResultBean findByBuildId(@PathVariable("id") Integer buildId){
         return deviceService.findByBuildId(buildId);
     }
@@ -50,6 +52,7 @@ public class DeviceController {
      */
     @ApiOperation(value = "新增设备",notes = "这里不需要建筑物id是因为  deviceInfo中有buildCode这个字段 且前端在进行添加时将这个值上下文获取 设置为固定灰白不可改")
     @PostMapping("/add")
+    @MyLog(description = "新增设备")
     public ResultBean addDevice(
             @RequestBody @ApiParam(name = "设备bean",value = "传入json格式",required = true) DeviceInfo deviceInfo){
         return deviceService.addDevice(deviceInfo);

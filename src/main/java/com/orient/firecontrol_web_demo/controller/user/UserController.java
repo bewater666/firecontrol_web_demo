@@ -1,5 +1,6 @@
 package com.orient.firecontrol_web_demo.controller.user;
 
+import com.orient.firecontrol_web_demo.config.aop.MyLog;
 import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.config.exception.CustomUnauthorizedException;
 import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
@@ -85,6 +86,7 @@ public class UserController {
     @GetMapping("/view")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "用户管理接口",notes = "superadmin admin权限   superadmin可以看全部人员信息 admin可以看自己部门下的人员讯息")
+//    @MyLog(description = "用户管理")
     public ResultBean listUser(){
         return userService.listUser();
     }
@@ -101,6 +103,7 @@ public class UserController {
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "新增用户接口",notes = "超级管理员添加的是单位领导(默认) 赋予添加的员工admin角色  需要传organId  " +
             "单位领导添加的默认是该单位下的员工organId就不重要  员工的角色后期自己赋予")
+    @MyLog(description = "新增用户")
     public ResultBean add(@RequestBody @ApiParam(name = "用户bean",value = "传入json格式",required = true) User user
                             ,@RequestParam @ApiParam(name = "roleId",value = "角色id",required = true) Integer roleId) {
         return userService.addUser(user, roleId);
@@ -155,6 +158,7 @@ public class UserController {
     @GetMapping("/getOnline")
     @RequiresRoles(value = {"superadmin"})
     @ApiOperation(value = "获得在线用户接口",notes = "获得在线用户接口 超级管理员权限")
+//    @MyLog(description = "查看在线用户")
     public ResultBean getOnlineUser(){
         List<UserDto> userDtoList = new ArrayList<UserDto>();
         // 查询所有Redis键
@@ -190,6 +194,7 @@ public class UserController {
     @GetMapping("/change/{id}")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "更改用户状态",notes = "原则上自己部门的领导才能更改自己员工状态 接口测试的时候注意即可 尽量用自己单位的admin进行操作")
+    @MyLog(description = "更改用户状态")
     public ResultBean changUserStatus(@PathVariable("id") @ApiParam(name = "id",value = "用户id 从上下文获取",required = true) Integer id){
         return userService.changUserStatus(id);
     }
@@ -202,6 +207,7 @@ public class UserController {
     @DeleteMapping("/deleteOnlineUser/{id}")
     @RequiresRoles(value = {"superadmin"})
     @ApiOperation(value = "剔除某个在线用户",notes = "超级管理员权限")
+    @MyLog(description = "剔除在线用户")
     public ResultBean deleteOnlineUser(@PathVariable("id") @ApiParam(value = "用户id",name = "id",required = true) Integer id){
         User byUserId = userDao.findByUserId(id);
         if (byUserId==null){
@@ -223,6 +229,7 @@ public class UserController {
     @ApiOperation(value = "查看用户的角色信息",notes = "查看该用户下的 角色信息")
     @GetMapping("/checkRoles/{id}")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
+//    @MyLog(description = "查看用户角色")
     public ResultBean checkRoles(@PathVariable("id") @ApiParam(value = "用户id",name = "id",required = true) Integer userId){
         return userService.checkRoles(userId);
     }
@@ -235,6 +242,7 @@ public class UserController {
     @ApiOperation(value = "保存用户角色接口",notes = "保存用户角色接口")
     @PostMapping("/saveRole")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
+    @MyLog(description = "修改用户角色")
     public ResultBean saveUserRole(@RequestBody @ApiParam(value = "传入json格式",name = "UserRole实体类",required = true) UserRole userRole){
         return userService.saveUserRole(userRole);
     }

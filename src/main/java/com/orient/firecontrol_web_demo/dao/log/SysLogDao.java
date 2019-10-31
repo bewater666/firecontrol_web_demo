@@ -4,6 +4,8 @@ import com.orient.firecontrol_web_demo.model.log.SysLog;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author bewater
  * @version 1.0
@@ -18,4 +20,10 @@ public interface SysLogDao {
      * @param sysLog
      */
     void addLog(SysLog sysLog);
+
+    /**
+     * 查询所有日志列表 前端分页处理
+     * @return
+     */
+    List<SysLog> findAll();
 }

@@ -1,5 +1,6 @@
 package com.orient.firecontrol_web_demo.service.device;
 
+import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.dao.device.DeviceInfoDao;
 import com.orient.firecontrol_web_demo.dao.organization.BuildingDao;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
@@ -32,7 +33,7 @@ public class DeviceService {
     public ResultBean findByBuildId(Integer buildingId){
         BuildingInfo byId = buildingDao.findById(buildingId);
         if (byId==null){
-            return new ResultBean(201, "查询失败(输入的建筑物id不存在)", null);
+            throw new CustomException("查询失败(输入的建筑物id不存在)");
         }
         String buildCode = byId.getBuildCode();
         List<DeviceInfo> byBuildCode = deviceInfoDao.findByBuildCode(buildCode);
@@ -53,20 +54,20 @@ public class DeviceService {
         String deviceCode = deviceInfo.getDeviceCode();
         //其中buildCode 是前端可以根据上下文获得的 所以一般不会出错  并且是固定的
         if (!deviceCode.substring(0, 10).equals(buildCode)){
-            return new ResultBean(201, "新增失败,设备编号前10位和建筑物编号不一致", null);
+            throw new CustomException("新增失败,设备编号前10位和建筑物编号不一致");
         }
         DeviceInfo one = deviceInfoDao.findOne(deviceCode);
         if (one!=null){
-            return new ResultBean(201, "新增设备失败,该设备已存在(deviceCode)", null);
+            throw new CustomException( "新增设备失败,该设备已存在(deviceCode)");
         }
         BuildingInfo byBuildCode = buildingDao.findByBuildCode(buildCode);
         if (byBuildCode==null){
-            return new ResultBean(201, "新增设备失败,传入建筑物编码有误", null);
+            throw new CustomException("新增设备失败,传入建筑物编码有误");
         }
         //设备类型 deviceType也不需要进行判定  用什么存什么就好
         int i = deviceInfoDao.addDevice(deviceInfo);
         if (i<=0){
-            return new ResultBean(201, "新增失败", null);
+            throw new CustomException("新增失败");
         }
         return new ResultBean(200, "新增成功", null);
     }

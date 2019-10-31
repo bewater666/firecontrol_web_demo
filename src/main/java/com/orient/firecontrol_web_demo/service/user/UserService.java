@@ -1,6 +1,7 @@
 package com.orient.firecontrol_web_demo.service.user;
 
 import com.orient.firecontrol_web_demo.config.common.StringUtil;
+import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
 import com.orient.firecontrol_web_demo.config.password.AesCipherUtil;
 import com.orient.firecontrol_web_demo.config.shiro.UserRealm;
@@ -50,7 +51,7 @@ public class UserService {
         String account = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT);
         Integer enable = userDao.findOneByAccount(account).getEnable();
         if (enable==0){
-            return new ResultBean(201, "查询失败该账户已被禁用,请与管理员联系" +
+            throw new CustomException("查询失败该账户已被禁用,请与管理员联系" +
                     "(Query failed this account has been disabled, please contact the administrator)");
         }
         List<Role> byUser = roleDao.findByUser(account);
@@ -84,12 +85,12 @@ public class UserService {
         //获取当前账户的id
         Integer id1 = userDao.findOneByAccount(account).getId();
         if (id==id1){
-            return new ResultBean(201, "更改用户状态失败:不可以对自己状态进行更改" +
+            throw new CustomException("更改用户状态失败:不可以对自己状态进行更改" +
                     "(Failed to change user state: you cannot change your state)");
         }
         int i = userDao.changeUserStatus(id);
         if (i<=0){
-            return new ResultBean(201, "更改用户状态失败(Failed to change user status)" );
+            throw new CustomException( "更改用户状态失败(Failed to change user status)" );
         }
         Integer enable = userDao.findByUserId(id).getEnable();
         if (enable==1){
@@ -101,35 +102,40 @@ public class UserService {
         return null;
     }
 
+    /**
+     * 保存用户角色
+     * @param userRole
+     * @return
+     */
     @Transactional
     public ResultBean saveUserRole(UserRole userRole){
         //默认 我这里不允许 管理员修改自己的角色
         String account1 = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT);
         Integer id = userDao.findOneByAccount(account1).getId();
         if (id==userRole.getUserId()){
-            return new ResultBean(201, "该用户角色不建议修改(单位领导)", null);
+            throw new CustomException("该用户角色不建议修改(单位领导)");
         }
         User byUserId1 = userDao.findByUserId(userRole.getUserId());
         if (byUserId1==null){
-            return new ResultBean(201, "该用户不存在", null);
+            throw new CustomException( "该用户不存在");
         }
         Role byRoleId = roleDao.findByRoleId(userRole.getRoleId());
         if (byRoleId==null){
-            return new ResultBean(201, "该角色不存在", null);
+            throw new CustomException("该角色不存在");
         }
         //先看这个userId在tb_user_role是否有对应的值
         List<UserRole> byUserId = userRoleDao.findByUserId(userRole.getUserId());
         if (byUserId.size()==0){ //没有  那就是给账户赋予角色
             int i = userRoleDao.addUser_Role(userRole);
             if (i<=0){
-                return new ResultBean(201, "保存账户角色信息失败", null);
+                throw new CustomException("保存账户角色信息失败");
             }
             //这边没有session  当角色权限改变时  动态刷新权限  还没有做到  日后再改
             return new ResultBean(200, "保存账户角色信息成功", null);
         }else{//有  那就是修改角色信息  将其修改掉即可  我这里一个账户对应一个角色
             int i = userRoleDao.updateUser_Role(userRole);
             if (i<=0){
-                return new ResultBean(201, "保存账户角色信息失败", null);
+                throw new CustomException( "保存账户角色信息失败");
             }
             return new ResultBean(200, "保存账户角色信息成功", null);
         }
@@ -157,11 +163,11 @@ public class UserService {
         // 判断当前帐号是否存在
         User oneByAccount = userDao.findOneByAccount(user.getAccount());
         if (oneByAccount != null && StringUtil.isNotBlank(oneByAccount.getPassword())) {
-            return new ResultBean(201, "新增用户失败,该账号已存在", null);
+            throw new CustomException("新增用户失败,该账号已存在");
         }
         // 密码以帐号+密码的形式进行AES加密
         if (user.getPassword().length() > Constant.PASSWORD_MAX_LEN) {
-            return new ResultBean(201, "密码不得超过8位", null);
+            throw new CustomException("密码不得超过8位");
         }
         user.setRegTime(new Date());
         String key = AesCipherUtil.enCrypto(user.getAccount() + user.getPassword());
@@ -192,7 +198,7 @@ public class UserService {
             UserRole userRole =new UserRole();
             userRole.setUserId(userId).setRoleId(roleId);//这里 单位管理员可以添加 两个角色  角色id前端传入
             if (roleId<=2){
-                return new ResultBean(201, "给新增用户设置角色失败(设置权限等级过高)", null);
+                throw new CustomException("给新增用户设置角色失败(设置权限等级过高)");
             }
             userRoleDao.addUser_Role(userRole);
             return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");

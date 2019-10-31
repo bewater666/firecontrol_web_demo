@@ -1,5 +1,6 @@
 package com.orient.firecontrol_web_demo.service.organ;
 
+import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.dao.device.DeviceInfoDao;
 import com.orient.firecontrol_web_demo.dao.organization.BuildingDao;
 import com.orient.firecontrol_web_demo.dao.user.UserDao;
@@ -58,20 +59,20 @@ public class BuildingService {
     public ResultBean addBuild(BuildingInfo buildingInfo,Integer organId){
         BuildingInfo byBuildCode = buildingDao.findByBuildCode(buildingInfo.getBuildCode());
         if (byBuildCode!=null){
-            return new ResultBean(201, "新增建筑物失败,该建筑物已存在(建筑物编号)", null);
+            throw new CustomException("新增建筑物失败,该建筑物已存在(建筑物编号)");
         }
         BuildingInfo byBuildName = buildingDao.findByBuildName(buildingInfo.getBuildName());
         if (byBuildName!=null){
-            return new ResultBean(201, "新增建筑物失败,该建筑物已存在(建筑物名称)", null);
+            throw new CustomException("新增建筑物失败,该建筑物已存在(建筑物名称)");
         }
         int i = buildingDao.addBuild(buildingInfo);
         if (i<=0){
-            return new ResultBean(201, "新增建筑物失败", null);
+            throw new CustomException("新增建筑物失败");
         }
         Integer id = buildingDao.findByBuildName(buildingInfo.getBuildName()).getId();
         int i1 = buildingDao.addOrgan_build(organId, id);
         if (i1<=0){
-            return new ResultBean(201, "新增建筑物失败", null);
+            throw new CustomException("新增建筑物失败");
         }
         return new ResultBean(200, "新增建筑物成功(New buildings achieved)", null);
     }
@@ -86,18 +87,18 @@ public class BuildingService {
     public ResultBean updateBuild(BuildingInfoUp buildingInfoUp){
         BuildingInfo byId = buildingDao.findById(buildingInfoUp.getId());
         if (byId==null){
-            return new ResultBean(201, "该建筑不存在", null);
+            throw new CustomException("该建筑不存在");
         }
         //当建筑物下绑定了设备后是不能修改buildCode的  因为改了会出问题 设备的编号和建筑物编号有关
         List<DeviceInfo> byBuildCode = deviceInfoDao.findByBuildCode(byId.getBuildCode());
         if (byBuildCode.size()!=0){//下面有绑定了设备 就不能修改建筑编号了
             if (!(buildingInfoUp.getBuildCode()).equals(byId.getBuildCode())){ //要修改的buildcode和原来的不一样不允许修改
-                return new ResultBean(201, "更新建筑信息失败(不可修改建筑物编号,该建筑物下绑定了设备)", null);
+                throw new CustomException("更新建筑信息失败(不可修改建筑物编号,该建筑物下绑定了设备)");
             }
             //buildCode不改只改建筑物名称 或和之前改成一样 那就允许修改
             int i = buildingDao.updateBuild(buildingInfoUp);
             if (i<=0){
-                return new ResultBean(201, "更新建筑物信息失败", null);
+                throw new CustomException("更新建筑物信息失败");
             }
             return new ResultBean(200, "更新建筑物信息成功", null);
         }

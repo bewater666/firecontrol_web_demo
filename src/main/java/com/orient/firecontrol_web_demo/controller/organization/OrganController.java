@@ -1,5 +1,6 @@
 package com.orient.firecontrol_web_demo.controller.organization;
 
+import com.orient.firecontrol_web_demo.config.aop.MyLog;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
 import com.orient.firecontrol_web_demo.model.organization.Organization;
 import com.orient.firecontrol_web_demo.model.organization.OrganizationDto;
@@ -31,6 +32,7 @@ public class OrganController {
     @GetMapping("/view")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "查看部门信息",notes = "超级管理员查看全部部门列表   单位管理只能查看自己的单位信息")
+//    @MyLog(description = "部门列表")
     public ResultBean listAllOrgan(){
         return organService.organView();
     }
@@ -44,6 +46,7 @@ public class OrganController {
     @PostMapping("/add")
     @RequiresRoles(value = {"superadmin"})
     @ApiOperation(value = "添加单位信息",notes = "超级管理员权限")
+    @MyLog(description = "添加单位信息")
     public ResultBean addOrgan(@RequestBody @ApiParam(value = "传入json格式",name = "单位bean",required = true) Organization organization){
         return organService.addOrgan(organization);
     }
@@ -58,6 +61,7 @@ public class OrganController {
     @PostMapping("/update")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "更新单位信息",notes = "更新单位信息(名称)")
+    @MyLog(description = "更新单位信息")
     public ResultBean updateOrgan(@RequestBody @ApiParam(name = "单位bean",value = "传入json格式",required = true) OrganizationDto organizationDto){
         return organService.updateOrgan(organizationDto);
     }

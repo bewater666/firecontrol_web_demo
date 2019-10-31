@@ -19,4 +19,8 @@
         INSERT INTO tb_logs (operate,operator,operate_ip,operate_time,method,params)
         VALUES (#{operate},#{operator},#{operateIP},#{operateTime},#{method},#{params})
     </insert>
+
+    <select id="findAll" resultMap="BaseMap">
+        SELECT id,operate,operator,operate_ip,operate_time,method,params FROM tb_logs
+    </select>
 </mapper>
