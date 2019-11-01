@@ -30,4 +30,40 @@ public class AlarmService {
         }
         return new ResultBean(200, "查询告警信息成功", all);
     }
+
+    /**
+     * 查看已处理的告警列表
+     * @return
+     */
+    public ResultBean findHasHandler(){
+        List<AlarmInfo> hasHandler = alarmDao.findHasHandler();
+        if (hasHandler.size()==0){
+            return new ResultBean(200, "已处理告警列表为空", null);
+        }
+        return new ResultBean(200, "查询已处理告警列表成功", hasHandler);
+    }
+
+    /**
+     * 查询 处理失败的告警列表
+     * @return
+     */
+    public ResultBean findHandlerBad(){
+        List<AlarmInfo> handlerBad = alarmDao.findHandlerBad();
+        if (handlerBad.size()==00){
+            return new ResultBean(200, "处理失败的告警列表为空", null);
+        }
+        return new ResultBean(200, "查询处理失败的告警列表成功", handlerBad);
+    }
+
+    /**
+     * 查询未处理的告警信息列表
+     * @return
+     */
+    public ResultBean findUnHandler(){
+        List<AlarmInfo> unHandler = alarmDao.findUnHandler();
+        if (unHandler.size()==0){
+            return new ResultBean(200, "未处理的告警列表为空", null);
+        }
+        return new ResultBean(200, "查询未处理的告警列表成功", unHandler);
+    }
 }

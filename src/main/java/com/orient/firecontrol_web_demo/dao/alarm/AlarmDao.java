@@ -28,4 +28,24 @@ public interface AlarmDao {
      * @return
      */
     List<AlarmInfo> findAll();
+
+    /**
+     * 查看已处理(处理成功)的列表
+     * @return
+     */
+    List<AlarmInfo> findHasHandler();
+
+
+    /**
+     * 查看 处理失败的告警信息
+     * @return
+     */
+    List<AlarmInfo> findHandlerBad();
+
+
+    /**
+     * 查看未处理的告警信息列表
+     * @return
+     */
+    List<AlarmInfo> findUnHandler();
 }

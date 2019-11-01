@@ -21,10 +21,44 @@ public class AlarmController {
     @Autowired
     private AlarmService alarmService;
 
-    @ApiOperation(value = "告警信息列表",notes = "告警信息列表")
+    @ApiOperation(value = "告警信息列表",notes = "告警信息列表,需登录查看")
     @GetMapping("/view")
     @RequiresAuthentication
     public ResultBean list(){
         return alarmService.list();
+    }
+
+    /**
+     * 查看已处理告警信息列表接口
+     * @return
+     */
+    @ApiOperation(value = "已处理告警列表",notes = "查看已处理告警信息列表,需登录查看")
+    @GetMapping("/findHasHandler")
+    @RequiresAuthentication
+    public ResultBean findHasHandler(){
+        return alarmService.findHasHandler();
+    }
+
+
+    /**
+     * 查看处理失败的告警信息列表接口
+     * @return
+     */
+    @ApiOperation(value = "处理失败的告警列表",notes = "查看处理失败的告警列表,需登录查看")
+    @GetMapping("/findHandlerBad")
+    @RequiresAuthentication
+    public ResultBean findHandlerBad(){
+        return alarmService.findHandlerBad();
+    }
+
+    /**
+     * 查询未处理的告警信息列表接口
+     * @return
+     */
+    @ApiOperation(value = "未处理的告警列表",notes = "查询未处理的告警信息列表接口 需登录查看")
+    @GetMapping("/findUnHandler")
+    @RequiresAuthentication
+    public ResultBean findUnHandler(){
+        return alarmService.findUnHandler();
     }
 }
