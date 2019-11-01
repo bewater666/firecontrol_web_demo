@@ -33,4 +33,8 @@
         SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler FROM tb_alarm
         WHERE ishandler = '未处理'
     </select>
+    <select id="findByDeviceCode" resultType="com.orient.firecontrol_web_demo.model.alarm.AlarmInfo">
+        SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler FROM tb_alarm
+        WHERE devicecode = #{deviceCode}
+    </select>
 </mapper>

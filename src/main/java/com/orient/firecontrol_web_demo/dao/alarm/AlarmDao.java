@@ -48,4 +48,11 @@ public interface AlarmDao {
      * @return
      */
     List<AlarmInfo> findUnHandler();
+
+    /**
+     * 根据设备id  查询他的告警信息列表
+     * @param deviceCode
+     * @return
+     */
+    List<AlarmInfo> findByDeviceCode(String deviceCode);
 }

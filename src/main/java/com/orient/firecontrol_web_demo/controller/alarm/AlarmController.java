@@ -3,10 +3,12 @@ package com.orient.firecontrol_web_demo.controller.alarm;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
 import com.orient.firecontrol_web_demo.service.alarm.AlarmService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -60,5 +62,18 @@ public class AlarmController {
     @RequiresAuthentication
     public ResultBean findUnHandler(){
         return alarmService.findUnHandler();
+    }
+
+
+    /**
+     * 根据设备编号查询该设备下的告警信息
+     * @param deviceCode
+     * @return
+     */
+    @ApiOperation(value = "查询设备告警",notes = "根据设备编号查询该设备下的告警信息")
+    @GetMapping("/findByDeviceCode")
+    @RequiresAuthentication
+    public ResultBean findByDeviceCode(@RequestParam @ApiParam(name = "deviceCode",value = "设备编号") String deviceCode){
+        return alarmService.findByDeviceCode(deviceCode);
     }
 }
