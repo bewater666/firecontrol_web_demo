@@ -6,6 +6,8 @@ import com.orient.firecontrol_web_demo.dao.device.Device01Dao;
 import com.orient.firecontrol_web_demo.dao.device.Device02Dao;
 import com.orient.firecontrol_web_demo.dao.device.Device03Dao;
 import com.orient.firecontrol_web_demo.dao.device.DeviceInfoDao;
+import com.orient.firecontrol_web_demo.dao.organization.BuildingDao;
+import com.orient.firecontrol_web_demo.dao.organization.OrganDao;
 import com.orient.firecontrol_web_demo.model.alarm.AlarmInfo;
 import com.orient.firecontrol_web_demo.model.device.Device01;
 import com.orient.firecontrol_web_demo.model.device.Device02;
@@ -41,6 +43,10 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
     private Device03Dao device03Dao;
     @Autowired
     private AlarmDao alarmDao;
+    @Autowired
+    private BuildingDao buildingDao;
+    @Autowired
+    private OrganDao organDao;
 
 
 
@@ -111,6 +117,17 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                             +" "+datai.substring(18, 20)+":"+datai.substring(20, 22)+":"+datai.substring(22, 24))
                             .setDeviceCode(msg.substring(10, 20)+datai.substring(0, 6))
                             .setAlarmGrade(alarmGrade+"级告警").setIsHandler("未处理");
+                    String buildCode = (msg.substring(10, 20)+datai.substring(0, 6)).substring(0, 10);
+                    Integer buildId;
+                    int organId;
+                    if ((buildingDao.findByBuildCode(buildCode))==null){ //即传过来建筑物编号 在数据库中不存在  这时候设置organId= 0
+                        //这里要注意 别数据库里organId = 0  感觉不理解
+                        organId = 0;
+                    }else{
+                        buildId = buildingDao.findByBuildCode(buildCode).getId();
+                        organId = organDao.findByBuildId(buildId);
+                    }
+                    alarmInfo.setOrganId(organId);
                     alarmDao.insert(alarmInfo);
                     i=i+24;
                 }

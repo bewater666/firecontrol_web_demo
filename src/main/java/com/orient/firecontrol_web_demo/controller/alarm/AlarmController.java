@@ -4,12 +4,11 @@ import com.orient.firecontrol_web_demo.model.common.ResultBean;
 import com.orient.firecontrol_web_demo.service.alarm.AlarmService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author bewater
@@ -23,9 +22,9 @@ public class AlarmController {
     @Autowired
     private AlarmService alarmService;
 
-    @ApiOperation(value = "告警信息列表",notes = "告警信息列表,需登录查看")
+    @ApiOperation(value = "告警信息列表",notes = "告警信息列表,需登录查看,超级管理员查看所有,单位管理员查看自己单位下的告警信息")
     @GetMapping("/view")
-    @RequiresAuthentication
+    @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     public ResultBean list(){
         return alarmService.list();
     }
@@ -75,5 +74,17 @@ public class AlarmController {
     @RequiresAuthentication
     public ResultBean findByDeviceCode(@RequestParam @ApiParam(name = "deviceCode",value = "设备编号") String deviceCode){
         return alarmService.findByDeviceCode(deviceCode);
+    }
+
+    /**
+     * 统计各级告警数目接口
+     * @param alarmGrade
+     * @return
+     */
+    @ApiOperation(value = "统计各级告警数目",notes = "统计各级告警数目接口,0代表0级告警...3代表3级告警")
+    @GetMapping("/count/{alarmGrade}")
+    @RequiresAuthentication
+    public ResultBean countAlarm(@PathVariable("alarmGrade") @ApiParam(name = "alarmGrade",value = "告警级别") Integer alarmGrade){
+        return alarmService.countAlarmGrade(alarmGrade);
     }
 }

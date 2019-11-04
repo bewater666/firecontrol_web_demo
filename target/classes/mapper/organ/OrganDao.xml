@@ -57,4 +57,9 @@
         ON  u.organ_id = o.id
         WHERE o.id = #{id}
     </select>
+
+    <select id="findByBuildId" resultType="java.lang.Integer">
+        SELECT organ_id FROM tb_organ_building
+        WHERE building_id = #{buildId}
+    </select>
 </mapper>

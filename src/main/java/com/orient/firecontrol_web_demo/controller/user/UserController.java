@@ -4,6 +4,7 @@ import com.orient.firecontrol_web_demo.config.aop.MyLog;
 import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.config.exception.CustomUnauthorizedException;
 import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
+import com.orient.firecontrol_web_demo.config.page.PageBean;
 import com.orient.firecontrol_web_demo.config.password.AesCipherUtil;
 import com.orient.firecontrol_web_demo.config.redis.JedisUtil;
 import com.orient.firecontrol_web_demo.dao.user.RoleDao;
@@ -83,12 +84,41 @@ public class UserController {
      * superadmin admin权限   superadmin可以看全部人员信息 admin可以看自己部门下的人员讯息
      * @return
      */
-    @GetMapping("/view")
+    @GetMapping("/view/{currentPage}/{pageSize}")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "用户管理接口",notes = "superadmin admin权限   superadmin可以看全部人员信息 admin可以看自己部门下的人员讯息")
 //    @MyLog(description = "用户管理")
-    public ResultBean listUser(){
-        return userService.listUser();
+    public ResultBean listUser(@PathVariable("currentPage")@ApiParam(name = "currentPage",value = "当前页码") Integer currentPage,
+                               @PathVariable("pageSize")@ApiParam(name = "pageSize",value = "每页条数") Integer pageSize){
+        PageBean<User> pageBean = userService.listUser(currentPage, pageSize);
+        List<User> items = pageBean.getItems();
+        Integer thisPageNum;
+        if (currentPage<=0){
+            throw new CustomException("输入的页码不符合规范");
+        }
+        if (currentPage==1){
+            if (items.size()<=pageSize){
+                thisPageNum =  items.size();
+            }else {
+                thisPageNum = pageSize;
+            }
+        }else {
+            Integer size = items.size()-(currentPage-1)*pageSize;
+            if (size>=pageSize){
+                thisPageNum = pageSize;
+            }else {
+                thisPageNum = size;
+            }
+        }
+        if ((currentPage-1)*pageSize>items.size()){
+            thisPageNum = 0;
+        }
+        Map map = new HashMap();
+        map.put("currentPage",currentPage);
+        map.put("thisPageNum",thisPageNum);
+        map.put("userList",items);
+        return  new ResultBean(200,"查询成功",map);
+
     }
 
 

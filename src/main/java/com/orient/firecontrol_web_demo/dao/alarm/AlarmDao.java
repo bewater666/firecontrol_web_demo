@@ -55,4 +55,18 @@ public interface AlarmDao {
      * @return
      */
     List<AlarmInfo> findByDeviceCode(String deviceCode);
+
+    /**
+     * 计数某告警级别的数量
+     * @param alarmGrade
+     * @return
+     */
+    int countNum(String alarmGrade);
+
+    /**
+     * 根据单位id  查询该单位下的报警信息
+     * @param organId
+     * @return
+     */
+    List<AlarmInfo> findByOrganId(Integer organId);
 }

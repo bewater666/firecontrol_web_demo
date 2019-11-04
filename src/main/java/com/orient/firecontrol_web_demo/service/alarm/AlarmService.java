@@ -1,11 +1,17 @@
 package com.orient.firecontrol_web_demo.service.alarm;
 
 import com.orient.firecontrol_web_demo.config.exception.CustomException;
+import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
 import com.orient.firecontrol_web_demo.dao.alarm.AlarmDao;
 import com.orient.firecontrol_web_demo.dao.device.DeviceInfoDao;
+import com.orient.firecontrol_web_demo.dao.organization.OrganDao;
+import com.orient.firecontrol_web_demo.dao.user.RoleDao;
 import com.orient.firecontrol_web_demo.model.alarm.AlarmInfo;
+import com.orient.firecontrol_web_demo.model.common.Constant;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
 import com.orient.firecontrol_web_demo.model.device.DeviceInfo;
+import com.orient.firecontrol_web_demo.model.user.Role;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,17 +29,42 @@ public class AlarmService {
     private AlarmDao alarmDao;
     @Autowired
     private DeviceInfoDao deviceInfoDao;
+    @Autowired
+    private OrganDao organDao;
+    @Autowired
+    private RoleDao roleDao;
 
     /**
      * 查看告警信息列表
+     * 各单位只能看各单位的下的告警信息
+     * 超级管理员查看所有
      * @return
      */
     public ResultBean list(){
-        List<AlarmInfo> all = alarmDao.findAll();
-        if (all.size()==0){
-            return new ResultBean(200, "查询成功,当前无告警信息", null);
+        //获取当前账户
+        String account = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT);
+        List<Role> byUser = roleDao.findByUser(account);
+        for (Role role:
+        byUser) {
+            String roleName = role.getRoleName();
+            if (roleName.equals("superadmin")){ //若是超级管理 该接口就是查看所有单位下的告警列表
+                List<AlarmInfo> all = alarmDao.findAll();
+                if (all.size()==0){
+                    return new ResultBean(200, "查询成功,所有单位均无告警信息", null);
+                }
+                return new ResultBean(200, "查询所有单位告警信息成功", all);
+            }
+            if (roleName.equals("admin")){ //若是单位领导 则是查看自己单位下的告警列表
+                Integer organId = organDao.findByAccount(account).getId();
+                List<AlarmInfo> byOrganId = alarmDao.findByOrganId(organId);
+                if (byOrganId.size()==0){
+                    return new ResultBean(200, "查询成功,该单位下无告警信息", null);
+                }
+                return new ResultBean(200, "查询单位告警信息成功", byOrganId);
+            }
+            throw new CustomException("查询失败");
         }
-        return new ResultBean(200, "查询告警信息成功", all);
+        return null;
     }
 
     /**
@@ -87,5 +118,36 @@ public class AlarmService {
             return new ResultBean(200, "该设备暂无告警信息", null);
         }
         return new ResultBean(200, "查询成功", byDeviceCode);
+    }
+
+
+    /**
+     * 统计各级告警数目
+     * @param grade
+     * @return
+     */
+    public ResultBean countAlarmGrade(Integer grade){
+        String alarmGrade = "";
+        if (grade==0){
+            alarmGrade = "0级告警";
+            int i = alarmDao.countNum(alarmGrade);
+            return new ResultBean(200, "0级告警统级成功", i);
+        }
+        if (grade==1){
+            alarmGrade = "1级告警";
+            int i = alarmDao.countNum(alarmGrade);
+            return new ResultBean(200, "1级告警统级成功", i);
+        }
+        if (grade==2){
+            alarmGrade = "2级告警";
+            int i = alarmDao.countNum(alarmGrade);
+            return new ResultBean(200, "2级告警统级成功", i);
+        }
+        if (grade==3){
+            alarmGrade = "3级告警";
+            int i = alarmDao.countNum(alarmGrade);
+            return new ResultBean(200, "3级告警统级成功", i);
+        }
+        throw new CustomException("输入告警级别有误,请重新输入");
     }
 }

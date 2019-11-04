@@ -56,5 +56,14 @@ public interface OrganDao {
     Organization findById(Integer id);
 
 
+    /**
+     * 根据建筑物id查找单位id  因为一个建筑物只可以绑定到一个单位
+     * @param buildId
+     * @return
+     */
+    int findByBuildId(Integer buildId);
+
+
+
 
 }

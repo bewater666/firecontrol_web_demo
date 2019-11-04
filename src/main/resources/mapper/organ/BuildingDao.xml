@@ -40,16 +40,16 @@
         WHERE o.id = #{organId}
     </select>
 
-    <select id="findById" resultType="com.orient.firecontrol_web_demo.model.organization.BuildingInfo">
+    <select id="findById" resultMap="BaseMap">
         SELECT building_id,buildcode,buildname FROM tb_buildinfo WHERE building_id = #{buildingId}
     </select>
-    <select id="findByBuildCode" resultType="com.orient.firecontrol_web_demo.model.organization.BuildingInfo">
+    <select id="findByBuildCode" resultMap="BaseMap">
         SELECT building_id,buildcode,buildname FROM tb_buildinfo WHERE buildcode = #{buildCode}
     </select>
     <select id="findByBuildName" resultMap="BaseMap">
         SELECT building_id,buildcode,buildname FROM tb_buildinfo WHERE buildname = #{buildName}
     </select>
-    <select id="findAll" resultType="com.orient.firecontrol_web_demo.model.organization.BuildingInfo">
+    <select id="findAll" resultMap="BaseMap">
         SELECT building_id,buildcode,buildname FROM tb_buildinfo
     </select>
 </mapper>

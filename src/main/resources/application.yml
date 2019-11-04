@@ -51,6 +51,14 @@ logging:
   level:
     com.orient.firecontrol_web_demo: debug #com.orient.server包下所有class以debug级别输出 控制台打印sql语句（debug级别才可以）
 
+pagehelper:
+    params: count=countSql
+    # 指定分页插件使用哪种方言
+    helper-dialect: mysql
+    # 分页合理化参数 pageNum<=0时会查询第一页 pageNum>pages(超过总数时) 会查询最后一页
+    reasonable: 'true'
+    support-methods-arguments: 'true'
+
 
 
 
