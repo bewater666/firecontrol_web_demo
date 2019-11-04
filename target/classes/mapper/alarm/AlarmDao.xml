@@ -29,20 +29,39 @@
     <select id="findAll" resultMap="BaseMap">
         SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
     </select>
+    <select id="findByOrganId" resultMap="BaseMap">
+        SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
+        WHERE organ_id = #{organId}
+    </select>
 
     <select id="findHasHandler" resultMap="BaseMap">
         SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
         WHERE ishandler = '已处理'
+    </select>
+    <select id="findOrganHasHandler" resultMap="BaseMap">
+        SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
+        WHERE ishandler = '已处理' AND organ_id = #{organId}
     </select>
 
     <select id="findHandlerBad" resultMap="BaseMap">
         SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
         WHERE ishandler = '处理失败'
     </select>
+    <select id="findOrganHandlerBad" resultMap="BaseMap">
+        SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
+        WHERE ishandler = '处理失败' AND organ_id = #{organId}
+    </select>
+
     <select id="findUnHandler" resultMap="BaseMap">
         SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
         WHERE ishandler = '未处理'
     </select>
+    <select id="findOrganUnHandler" resultMap="BaseMap">
+        SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
+        WHERE ishandler = '未处理' AND organ_id = #{organId}
+    </select>
+
+
     <select id="findByDeviceCode" resultMap="BaseMap">
         SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
         WHERE devicecode = #{deviceCode}
@@ -52,9 +71,13 @@
         SELECT COUNT(*) FROM tb_alarm
         WHERE alarmgrade = #{alarmGrade}
     </select>
-
-    <select id="findByOrganId" resultMap="BaseMap">
-        SELECT id,devicecode,alarmtime,alarmdetail,alarmgrade,ishandler,organ_id FROM tb_alarm
-        WHERE organ_id = #{organId}
+    <select id="countOrganNum" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_alarm
+        WHERE alarmgrade = #{alarmGrade} AND organ_id = #{organId}
     </select>
+
+
+
+
+
 </mapper>

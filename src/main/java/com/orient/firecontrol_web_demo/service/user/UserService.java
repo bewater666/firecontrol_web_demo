@@ -51,9 +51,6 @@ public class UserService {
      * @return
      */
     public PageBean<User>listUser(Integer currentPage,Integer pageSize){
-
-
-
         //取出当前登录的用户信息
         String account = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT);
         Integer enable = userDao.findOneByAccount(account).getEnable();
@@ -69,8 +66,7 @@ public class UserService {
             PageHelper.startPage(currentPage,pageSize);
             List<User> all = userDao.findAll();
             //若是超级管理员  那么查询出的用户列表就是全部的人员信息
-            Integer totalNum = all.size();
-            PageBean<User> pageBean = new PageBean<>(currentPage, pageSize, totalNum);
+            PageBean<User> pageBean = new PageBean<>(currentPage, pageSize, userDao.findAll().size());
             pageBean.setItems(all);
             return pageBean;
         }
@@ -80,8 +76,7 @@ public class UserService {
             Integer organId = userDao.findOneByAccount(account).getOrganId();
             PageHelper.startPage(currentPage,pageSize);
             List<User> byOrganId = userDao.findByOrganId(organId);
-            Integer totalNum = byOrganId.size();
-            PageBean<User> pageBean = new PageBean<>(currentPage, pageSize, totalNum);
+            PageBean<User> pageBean = new PageBean<>(currentPage, pageSize, userDao.findByOrganId(organId).size());
             pageBean.setItems(byOrganId);
             return pageBean;
         }

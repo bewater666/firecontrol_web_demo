@@ -1,7 +1,8 @@
 package com.orient.firecontrol_web_demo.service.log;
 
+import com.github.pagehelper.PageHelper;
+import com.orient.firecontrol_web_demo.config.page.PageBean;
 import com.orient.firecontrol_web_demo.dao.log.SysLogDao;
-import com.orient.firecontrol_web_demo.model.common.ResultBean;
 import com.orient.firecontrol_web_demo.model.log.SysLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,18 @@ public class SysLogService {
     private SysLogDao sysLogDao;
 
 
-    public ResultBean list(){
+    /**
+     * 查询所有系统日志
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    public PageBean<SysLog> list(Integer currentPage, Integer pageSize){
+        PageHelper.startPage(currentPage,pageSize);
         List<SysLog> all = sysLogDao.findAll();
-        if (all.size()==0){
-            return new ResultBean(200, "查询成功,当前没有系统日志", null);
-        }
-        return new ResultBean(200, "查询日志列表成功", all);
+        PageBean<SysLog> pageBean = new PageBean<>(currentPage, pageSize, sysLogDao.findAll().size());
+        pageBean.setItems(all);
+        return pageBean;
     }
 
 }

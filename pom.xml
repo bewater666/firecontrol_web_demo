@@ -64,10 +64,6 @@
 
         <!--热部署-->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>springloaded</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
@@ -135,6 +131,7 @@
     </dependencies>
 
     <build>
+        <finalName>firecontrol_web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

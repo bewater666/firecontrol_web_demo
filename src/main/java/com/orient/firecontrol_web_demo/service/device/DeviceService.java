@@ -1,6 +1,8 @@
 package com.orient.firecontrol_web_demo.service.device;
 
+import com.github.pagehelper.PageHelper;
 import com.orient.firecontrol_web_demo.config.exception.CustomException;
+import com.orient.firecontrol_web_demo.config.page.PageBean;
 import com.orient.firecontrol_web_demo.dao.device.DeviceInfoDao;
 import com.orient.firecontrol_web_demo.dao.organization.BuildingDao;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
@@ -30,17 +32,18 @@ public class DeviceService {
      * @param buildingId
      * @return
      */
-    public ResultBean findByBuildId(Integer buildingId){
+    public PageBean<DeviceInfo> findByBuildId(Integer currentPage,Integer pageSize,Integer buildingId){
+
         BuildingInfo byId = buildingDao.findById(buildingId);
         if (byId==null){
             throw new CustomException("查询失败(输入的建筑物id不存在)");
         }
         String buildCode = byId.getBuildCode();
+        PageHelper.startPage(currentPage, pageSize);
         List<DeviceInfo> byBuildCode = deviceInfoDao.findByBuildCode(buildCode);
-        if (byBuildCode.size()==0){
-            return new ResultBean(200, "查询成功,该建筑物下无设备信息", null);
-        }
-        return new ResultBean(200, "查询成功", byBuildCode);
+        PageBean<DeviceInfo> pageBean = new PageBean<>(currentPage, pageSize, deviceInfoDao.findByBuildCode(buildCode).size());
+        pageBean.setItems(byBuildCode);
+        return pageBean;
     }
 
 
