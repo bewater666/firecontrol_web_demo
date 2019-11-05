@@ -5,9 +5,11 @@ import com.orient.firecontrol_web_demo.config.exception.CustomException;
 import com.orient.firecontrol_web_demo.config.page.PageBean;
 import com.orient.firecontrol_web_demo.dao.device.DeviceInfoDao;
 import com.orient.firecontrol_web_demo.dao.organization.BuildingDao;
+import com.orient.firecontrol_web_demo.dao.organization.FloorDao;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
 import com.orient.firecontrol_web_demo.model.device.DeviceInfo;
 import com.orient.firecontrol_web_demo.model.organization.BuildingInfo;
+import com.orient.firecontrol_web_demo.model.organization.FloorInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,8 @@ public class DeviceService {
     private DeviceInfoDao deviceInfoDao;
     @Autowired
     private BuildingDao buildingDao;
+    @Autowired
+    private FloorDao floorDao;
 
 
     /**
@@ -48,7 +52,7 @@ public class DeviceService {
 
 
     /**
-     * 新增设备 并绑定建筑
+     * 新增设备 并绑定建筑及楼层
      * @param deviceInfo
      * @return
      */
@@ -75,5 +79,24 @@ public class DeviceService {
         return new ResultBean(200, "新增成功", null);
     }
 
+
+    /**
+     * 查询某建筑物下某楼层下的设备信息
+     * @param buildCode
+     * @param floorCode
+     * @return
+     */
+    public ResultBean listByBuildCodeAndFloorCode(String buildCode,Integer floorCode){
+        BuildingInfo byBuildCode = buildingDao.findByBuildCode(buildCode);
+        if (byBuildCode==null){
+            throw new CustomException("建筑物编号不存在");
+        }
+        FloorInfo floorInfo = floorDao.floorIsRight(buildCode, floorCode);
+        if (floorInfo==null){
+            throw new CustomException("该建筑物下暂无"+floorCode+"楼");
+        }
+        List<DeviceInfo> byBuildCodeAndFloorCode = deviceInfoDao.findByBuildCodeAndFloorCode(buildCode, floorCode);
+        return new ResultBean(200, "查询成功", byBuildCodeAndFloorCode);
+    }
 
 }

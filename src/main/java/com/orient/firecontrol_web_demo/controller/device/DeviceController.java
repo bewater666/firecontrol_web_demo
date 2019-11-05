@@ -63,7 +63,7 @@ public class DeviceController {
 
 
     /**
-     * 新增设备  并绑定建筑物
+     * 新增设备  并绑定建筑物及楼层编号
      * 这里不需要建筑物id是因为  deviceInfo中有buildCode这个字段 且前端在进行添加时将这个值上下文获取 设置为固定灰白不可改
      * superadmin admin 权限
      * @param deviceInfo
@@ -72,9 +72,26 @@ public class DeviceController {
     @ApiOperation(value = "新增设备",notes = "这里不需要建筑物id是因为  deviceInfo中有buildCode这个字段 且前端在进行添加时将这个值上下文获取 设置为固定灰白不可改")
     @PostMapping("/add")
     @MyLog(description = "新增设备")
+    @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     public ResultBean addDevice(
             @RequestBody @ApiParam(name = "设备bean",value = "传入json格式",required = true) DeviceInfo deviceInfo){
         return deviceService.addDevice(deviceInfo);
+    }
+
+
+    /**
+     * 查询某建筑物下的某单位下的设备列表
+     * 建筑物编号 有前端上下文获得
+     * @param buildCode
+     * @param floorCode
+     * @return
+     */
+    @GetMapping("/listByFloorCode")
+    @ApiOperation(value = "查询楼层下设备",notes = "查询某建筑物下的某单位下的设备列表")
+    @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
+    public ResultBean listByFloorCode(@RequestParam("buildCode")@ApiParam(name = "buildCode",value = "建筑物编号",required = true) String buildCode,
+                                      @RequestParam("floorCode") @ApiParam(name = "floorCode",value = "楼层编号",required = true) Integer floorCode){
+        return deviceService.listByBuildCodeAndFloorCode(buildCode, floorCode);
     }
 
 

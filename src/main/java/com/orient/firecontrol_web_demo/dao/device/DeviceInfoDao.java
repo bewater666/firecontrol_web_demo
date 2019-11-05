@@ -42,5 +42,11 @@ public interface DeviceInfoDao {
      */
     int addDevice(DeviceInfo deviceInfo);
 
-
+    /**
+     * 查询某建筑下某楼层下的设备列表
+     * @param buildCode
+     * @param floorCode
+     * @return
+     */
+    List<DeviceInfo> findByBuildCodeAndFloorCode(@Param("buildCode") String buildCode,@Param("floorCode") Integer floorCode);
 }

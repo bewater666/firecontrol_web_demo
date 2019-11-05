@@ -33,4 +33,7 @@ public class DeviceInfo {
 
     @ApiModelProperty(hidden = true)
     private String status; //设备状态 在线与否  靠心跳包判定
+
+    @ApiModelProperty(value = "所处的楼层id",name="floorCode",required = true,example = "5")
+    private Integer floorCode;    //设备所处楼层id 如floorId=5 南京办公室5楼下的某设备信息
 }

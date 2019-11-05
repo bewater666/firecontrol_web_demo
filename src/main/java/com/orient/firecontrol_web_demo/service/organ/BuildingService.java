@@ -106,4 +106,7 @@ public class BuildingService {
         int i = buildingDao.updateBuild(buildingInfoUp);
         return new ResultBean(200, "更新建筑物信息成功", null);
     }
+
+
+
 }

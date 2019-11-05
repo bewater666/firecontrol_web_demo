@@ -78,6 +78,7 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                     }else {
                         log.info("设备状态未发生改变,不调用服务器");
                     }
+
                     i=i+8;
                 }
 
