@@ -13,7 +13,9 @@ import com.orient.firecontrol_web_demo.model.organization.FloorInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author bewater
@@ -81,7 +83,7 @@ public class DeviceService {
 
 
     /**
-     * 查询某建筑物下某楼层下的设备信息
+     * 查询某建筑物下某楼层下的设备信息 并判定楼层状态
      * @param buildCode
      * @param floorCode
      * @return
@@ -96,7 +98,21 @@ public class DeviceService {
             throw new CustomException("该建筑物下暂无"+floorCode+"楼");
         }
         List<DeviceInfo> byBuildCodeAndFloorCode = deviceInfoDao.findByBuildCodeAndFloorCode(buildCode, floorCode);
-        return new ResultBean(200, "查询成功", byBuildCodeAndFloorCode);
+        if (byBuildCodeAndFloorCode==null){
+            return new ResultBean(200, floorCode+"楼无设备信息", null);
+        }
+        Integer floorStatus=1;
+        for (DeviceInfo deviceInfo:
+        byBuildCodeAndFloorCode) {
+            String status = deviceInfo.getStatus();
+            if (status.equals("离线")){//若该楼层的某一设备离线则判断该楼层状态为离线
+                floorStatus=0;
+            }
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("deviceList", byBuildCodeAndFloorCode);
+        map.put("floorStatus", floorStatus);
+        return new ResultBean(200, "查询成功", map);
     }
 
 }

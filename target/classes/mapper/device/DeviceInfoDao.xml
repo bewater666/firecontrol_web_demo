@@ -8,11 +8,12 @@
         <result property="deviceName" column="devicename" jdbcType="VARCHAR"/>
         <result property="deviceType" column="devicetype" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="floorCode" column="floor_code" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addDevice">
-        INSERT INTO tb_device (buildCode,deviceCode,deviceName,deviceType,status)
-        VALUES (#{buildCode},#{deviceCode},#{deviceName},#{deviceType},'离线')
+        INSERT INTO tb_device (buildCode,deviceCode,deviceName,deviceType,status,floor_code)
+        VALUES (#{buildCode},#{deviceCode},#{deviceName},#{deviceType},'离线',#{floorCode})
     </insert>
 
 
@@ -22,16 +23,22 @@
 
 
     <select id="findAll" resultType="com.orient.firecontrol_web_demo.model.device.DeviceInfo">
-        SELECT id,buildcode,devicecode,devicetype,devicename,status FROM tb_device
+        SELECT id,buildcode,devicecode,devicetype,devicename,status,floor_code FROM tb_device
     </select>
 
     <select id="findOne" resultType="com.orient.firecontrol_web_demo.model.device.DeviceInfo">
-        SELECT b.buildname,d.id,d.buildcode,d.devicecode,d.devicetype,d.devicename,d.status FROM tb_device d
+        SELECT b.buildname,d.id,d.buildcode,d.devicecode,d.devicetype,d.devicename,d.status,d.floor_code FROM tb_device d
         LEFT JOIN tb_buildinfo b ON b.buildcode = d.buildcode
         WHERE d.devicecode = #{deviceCode}
     </select>
 
     <select id="findByBuildCode" resultType="com.orient.firecontrol_web_demo.model.device.DeviceInfo">
-        SELECT id,buildcode,devicecode,devicetype,devicename,status FROM tb_device WHERE buildcode = #{buildCode}
+        SELECT id,buildcode,devicecode,devicetype,devicename,status,floor_code FROM tb_device WHERE buildcode = #{buildCode}
+    </select>
+
+    <select id="findByBuildCodeAndFloorCode"
+            resultType="com.orient.firecontrol_web_demo.model.device.DeviceInfo">
+        SELECT id,buildcode,devicecode,devicetype,devicename,status,floor_code FROM tb_device
+        WHERE buildcode = #{buildCode} AND floor_code = #{floorCode}
     </select>
 </mapper>
