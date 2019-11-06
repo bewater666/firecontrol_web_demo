@@ -146,6 +146,8 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                     String substring = data.substring(i + 7, i + 8);
                     if (substring.equals("1")) {
                         System.out.println("***主机设备,有5项数据");
+                        //设备编号
+                        String deviceCode = msg.substring(10, 20)+data.substring(i, i+6);
                         //A相电压
                         String voltageA1 = data.substring(i + 10, i + 12);
                         String voltageA2 = data.substring(i + 8, i + 10);
@@ -177,12 +179,15 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                         double boxTemp = Integer.parseInt(T, 16);
                         System.out.println("配电箱环境温度为===" + boxTemp / 10 + "℃");
                         Device01 device01 = new Device01();
-                        device01.setVoltageA(voltageA / 100 + "V").setVoltageB(voltageB / 100 + "V").setVoltageC(voltageC / 100 + "V").setRemainElec(remainElec / 10 + "mA").setBoxTemp(boxTemp / 10 + "℃");
+                        device01.setVoltageA(voltageA / 100 + "V").setVoltageB(voltageB / 100 + "V").setVoltageC(voltageC / 100 + "V")
+                                .setRemainElec(remainElec / 10 + "mA").setBoxTemp(boxTemp / 10 + "℃").setDeviceCode(deviceCode);
                         device01Dao.insertDevice01Measure(device01);
                         i = i + 4 * 7;
                     }
                     if (substring.equals("2")) {
                         System.out.println("***单项子机设备,有2项数据");
+                        //设备编号
+                        String deviceCode = msg.substring(10, 20)+data.substring(i, i+6);
                         //支路电流
                         String branchElec1 = data.substring(i + 10, i + 12);
                         String branchElec2 = data.substring(i + 8, i + 10);
@@ -196,12 +201,14 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                         double branchTemp = Integer.parseInt(T, 16);
                         System.out.println("支路接头温度===" + branchTemp / 10 + "℃");
                         Device02 device02 = new Device02();
-                        device02.setBranchElec(branchElec / 100 + "mA").setBranchTemp(branchTemp / 10 + "℃");
+                        device02.setBranchElec(branchElec / 100 + "mA").setBranchTemp(branchTemp / 10 + "℃").setDeviceCode(deviceCode);
                         device02Dao.insertDevice02Measure(device02);
                         i = i + 4 * 4;
                     }
                     if (substring.equals("3")) {
                         System.out.println("***三相子机设备,有6项数据");
+                        //设备编号
+                        String deviceCode = msg.substring(10, 20)+data.substring(i, i+6);
                         //支路 A 相电流
                         String branchElecA1 = data.substring(i + 10, i + 12);
                         String branchElecA2 = data.substring(i + 8, i + 10);
@@ -239,7 +246,9 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                         double branchTempC = Integer.parseInt(CT, 16);
                         System.out.println("支路 C 相接头温度===" + branchTempC / 10 + "℃");
                         Device03 device03 = new Device03();
-                        device03.setBranchElecA(branchElecA / 100 + "mA").setBranchElecB(branchElecB / 100 + "mA").setBranchElecC(branchElecC / 100 + "mA").setBranchTempA(branchTempA / 10 + "℃").setBranchTempB(branchTempB / 10 + "℃").setBranchTempC(branchTempC / 10 + "℃");
+                        device03.setBranchElecA(branchElecA / 100 + "mA").setBranchElecB(branchElecB / 100 + "mA")
+                                .setBranchElecC(branchElecC / 100 + "mA").setBranchTempA(branchTempA / 10 + "℃")
+                                .setBranchTempB(branchTempB / 10 + "℃").setBranchTempC(branchTempC / 10 + "℃").setDeviceCode(deviceCode);
                         device03Dao.insertDevice03Measure(device03);
                         i = i + 4 * 8;
                     }

@@ -83,7 +83,7 @@ public class DeviceService {
 
 
     /**
-     * 查询某建筑物下某楼层下的设备信息 并判定楼层状态
+     * 查询某建筑物下某楼层下的设备信息
      * @param buildCode
      * @param floorCode
      * @return
@@ -101,17 +101,9 @@ public class DeviceService {
         if (byBuildCodeAndFloorCode==null){
             return new ResultBean(200, floorCode+"楼无设备信息", null);
         }
-        Integer floorStatus=1;
-        for (DeviceInfo deviceInfo:
-        byBuildCodeAndFloorCode) {
-            String status = deviceInfo.getStatus();
-            if (status.equals("离线")){//若该楼层的某一设备离线则判断该楼层状态为离线
-                floorStatus=0;
-            }
-        }
+
         Map<String,Object> map = new HashMap<>();
         map.put("deviceList", byBuildCodeAndFloorCode);
-        map.put("floorStatus", floorStatus);
         return new ResultBean(200, "查询成功", map);
     }
 

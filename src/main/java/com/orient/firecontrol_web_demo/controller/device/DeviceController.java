@@ -87,7 +87,7 @@ public class DeviceController {
      * @return
      */
     @GetMapping("/listByFloorCode")
-    @ApiOperation(value = "查询楼层下设备",notes = "查询某建筑物下的某单位下的设备列表,并判定楼层状态")
+    @ApiOperation(value = "查询楼层下设备",notes = "查询某建筑物下的某单位下的设备列表")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     public ResultBean listByFloorCode(@RequestParam("buildCode")@ApiParam(name = "buildCode",value = "建筑物编号",required = true) String buildCode,
                                       @RequestParam("floorCode") @ApiParam(name = "floorCode",value = "楼层编号",required = true) Integer floorCode){

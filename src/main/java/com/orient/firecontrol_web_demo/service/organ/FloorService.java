@@ -1,14 +1,18 @@
 package com.orient.firecontrol_web_demo.service.organ;
 
 import com.orient.firecontrol_web_demo.config.exception.CustomException;
+import com.orient.firecontrol_web_demo.dao.device.DeviceInfoDao;
 import com.orient.firecontrol_web_demo.dao.organization.BuildingDao;
 import com.orient.firecontrol_web_demo.dao.organization.FloorDao;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
+import com.orient.firecontrol_web_demo.model.device.DeviceInfo;
 import com.orient.firecontrol_web_demo.model.organization.BuildingInfo;
+import com.orient.firecontrol_web_demo.model.organization.FloorDto;
 import com.orient.firecontrol_web_demo.model.organization.FloorInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,10 +27,12 @@ public class FloorService {
     private FloorDao floorDao;
     @Autowired
     private BuildingDao buildingDao;
+    @Autowired
+    private DeviceInfoDao deviceInfoDao;
 
 
     /**
-     * 查询某建筑物下的楼层列表
+     * 查询某建筑物下的楼层列表 并判定各楼层状态
      * @param buildCode
      * @return
      */
@@ -39,6 +45,26 @@ public class FloorService {
         if (floorInfos.size()==0){
             return new ResultBean(200, "当前建筑下无楼层信息", null);
         }
-        return new ResultBean(200, "查询楼层列表成功", floorInfos);
+        List<FloorDto> floorDtoList = new ArrayList<>();
+        for (FloorInfo floorInfo:
+        floorInfos) {
+            //查询该建筑物下 某一楼层的设备列表
+            List<DeviceInfo> byBuildCodeAndFloorCode = deviceInfoDao.findByBuildCodeAndFloorCode(buildCode, floorInfo.getFloorCode());
+            Integer floorStatus=1;
+            FloorDto floorDto = new FloorDto();
+            for (DeviceInfo deviceInfo:
+            byBuildCodeAndFloorCode) {
+                if (deviceInfo.getStatus().equals("离线")){ //若某一楼层下的设备状态存在离线的 则该楼层状态为0
+                    floorStatus = 0;
+                }
+            }
+            floorDto.setId(floorInfo.getId());
+            floorDto.setBuildCode(buildCode);
+            floorDto.setFloorCode(floorInfo.getFloorCode());
+            floorDto.setFloorName(floorInfo.getFloorName());
+            floorDto.setFloorStatus(floorStatus);
+            floorDtoList.add(floorDto);
+        }
+        return new ResultBean(200, "查询楼层列表成功", floorDtoList);
     }
 }

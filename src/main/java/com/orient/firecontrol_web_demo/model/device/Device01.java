@@ -9,12 +9,15 @@ import lombok.experimental.Accessors;
  * @version 1.0
  * @date 2019/10/16 14:17
  * @func 主控设备bean  用于接受测量的数据值
+ * 为什么要用device1 device2 device3  三个类来封装呢  因为考虑到三种设备字段不一样 测量数据类型有差别
+ * 所以用三个比较合适  查询的时候判断一下设备的类别然后进各自的表查询即可
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain = true)
 public class Device01 {
     private Integer id;
+    private String deviceCode;  //设备编号
     private String voltageA; //A相电压
     private String voltageB; //B相电压
     private String voltageC;  //C相电压

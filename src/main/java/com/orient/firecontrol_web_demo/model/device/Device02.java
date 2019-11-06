@@ -15,6 +15,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Device02 {
     private Integer id;
+    private String deviceCode;  //设备编号
     private String branchElec;  //支路电流
     private String branchTemp;  //支路接头温度
 }

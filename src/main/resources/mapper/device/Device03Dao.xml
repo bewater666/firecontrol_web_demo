@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.orient.firecontrol_web_demo.dao.device.Device03Dao">
     <insert id="insertDevice03Measure">
-        INSERT INTO tb_device3_measure (branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC)
-        VALUES (#{branchElecA},#{branchElecB},#{branchElecC},#{branchTempA},#{branchTempB},#{branchTempC})
+        INSERT INTO tb_device3_measure (deviceCode,branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC)
+        VALUES (#{deviceCode},#{branchElecA},#{branchElecB},#{branchElecC},#{branchTempA},#{branchTempB},#{branchTempC})
     </insert>
 </mapper>

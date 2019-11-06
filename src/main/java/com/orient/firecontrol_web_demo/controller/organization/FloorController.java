@@ -25,7 +25,7 @@ public class FloorController {
     private FloorService floorService;
 
     @GetMapping("/view")
-    @ApiOperation(value = "楼层列表",notes = "楼层列表接口,超级管理员,单位领导可访问")
+    @ApiOperation(value = "楼层列表",notes = "楼层列表,并判断楼层状态,超级管理员,单位领导可访问")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     public ResultBean list(@RequestParam("buildCode") @ApiParam(name = "buildCode",value = "建筑物编号",required = true) String buildCode){
         return floorService.listByBuildCode(buildCode);

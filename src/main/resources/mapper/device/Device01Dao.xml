@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.orient.firecontrol_web_demo.dao.device.Device01Dao">
     <insert id="insertDevice01Measure">
-        INSERT INTO tb_device1_measure (voltageA,voltageB,voltageC,remainElec,boxTemp)
-        VALUES (#{voltageA},#{voltageB},#{voltageC},#{remainElec},#{boxTemp})
+        INSERT INTO tb_device1_measure (deviceCode,voltageA,voltageB,voltageC,remainElec,boxTemp)
+        VALUES (#{deviceCode},#{voltageA},#{voltageB},#{voltageC},#{remainElec},#{boxTemp})
     </insert>
     <select id="findById" resultType="com.orient.firecontrol_web_demo.model.device.Device01">
         SELECT * FROM tb_device1_measure WHERE id = #{id}

@@ -15,6 +15,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Device03 {
     private Integer id;
+    private String deviceCode;  //设备编号
     private String branchElecA;  //支路A相电流
     private String branchElecB;  //支路B相电流
     private String branchElecC;  //支路C相电流
