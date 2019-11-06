@@ -46,6 +46,7 @@ public class FloorService {
             return new ResultBean(200, "当前建筑下无楼层信息", null);
         }
         List<FloorDto> floorDtoList = new ArrayList<>();
+        // TODO: 2019/11/6  这里代码处理的不是很好 存在两层for循环 可能会导致响应速度变慢 为了查询所有楼层的状态 有待改进
         for (FloorInfo floorInfo:
         floorInfos) {
             //查询该建筑物下 某一楼层的设备列表

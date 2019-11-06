@@ -49,4 +49,6 @@ public interface DeviceInfoDao {
      * @return
      */
     List<DeviceInfo> findByBuildCodeAndFloorCode(@Param("buildCode") String buildCode,@Param("floorCode") Integer floorCode);
+
+
 }

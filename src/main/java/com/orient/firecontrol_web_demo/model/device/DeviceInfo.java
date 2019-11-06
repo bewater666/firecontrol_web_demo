@@ -8,7 +8,7 @@ import lombok.Data;
  * @author bewater
  * @version 1.0
  * @date 2019/10/16 10:01
- * @func
+ * @func  设备名称不重要后期用户可以自己设置  重要的是设备类型
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -27,6 +27,9 @@ public class DeviceInfo {
 
     @ApiModelProperty(value = "设备类型",name="deviceType",required = true,example = "00")
     private String deviceType;  //设备类型  01主控  02单相子机 03三相子机
+
+    @ApiModelProperty(hidden = true)
+    private String typeName;    //设备类型名称
 
     @ApiModelProperty(value = "设备名称",name="deviceName",required = true,example = "测试设备3")
     private String deviceName;  //设备名称

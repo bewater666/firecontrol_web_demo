@@ -7,13 +7,14 @@
         <result property="deviceCode" column="devicecode" jdbcType="VARCHAR"/>
         <result property="deviceName" column="devicename" jdbcType="VARCHAR"/>
         <result property="deviceType" column="devicetype" jdbcType="VARCHAR"/>
+        <result property="typeName" column="typename" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="VARCHAR"/>
         <result property="floorCode" column="floor_code" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="addDevice">
-        INSERT INTO tb_device (buildCode,deviceCode,deviceName,deviceType,status,floor_code)
-        VALUES (#{buildCode},#{deviceCode},#{deviceName},#{deviceType},'离线',#{floorCode})
+        INSERT INTO tb_device (buildCode,deviceCode,deviceName,deviceType,typename,status,floor_code)
+        VALUES (#{buildCode},#{deviceCode},#{deviceName},#{deviceType},#{typeName},'离线',#{floorCode})
     </insert>
 
 
@@ -38,7 +39,7 @@
 
     <select id="findByBuildCodeAndFloorCode"
             resultType="com.orient.firecontrol_web_demo.model.device.DeviceInfo">
-        SELECT id,buildcode,devicecode,devicetype,devicename,status,floor_code FROM tb_device
+        SELECT id,buildcode,devicecode,devicetype,devicename,status,floor_code,typename FROM tb_device
         WHERE buildcode = #{buildCode} AND floor_code = #{floorCode}
     </select>
 </mapper>
