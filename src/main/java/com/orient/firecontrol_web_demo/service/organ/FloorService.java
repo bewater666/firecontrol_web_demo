@@ -68,4 +68,28 @@ public class FloorService {
         }
         return new ResultBean(200, "查询楼层列表成功", floorDtoList);
     }
+
+
+    /**
+     * 给某建筑新增楼层  floorInfo有buildCode字段 根据这个绑定在一起
+     * @param floorInfo
+     * @return
+     */
+    public ResultBean addFloor(FloorInfo floorInfo){
+        String buildCode = floorInfo.getBuildCode();
+        BuildingInfo byBuildCode = buildingDao.findByBuildCode(buildCode);
+        if (byBuildCode==null){
+            throw new CustomException("该建筑编号不存在");
+        }
+        Integer floorCode = floorInfo.getFloorCode();
+        FloorInfo floorInfo1 = floorDao.floorIsRight(buildCode, floorCode);
+        if (floorInfo1!=null){
+            throw new CustomException("该建筑已经存在"+floorCode+"楼");
+        }
+        int i = floorDao.addFloor(floorInfo);
+        if (i<=0){
+            throw new CustomException("新增楼层失败");
+        }
+        return new ResultBean(200, "新增楼层成功", null);
+    }
 }

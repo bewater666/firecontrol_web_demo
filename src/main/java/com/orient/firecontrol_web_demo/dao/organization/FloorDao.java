@@ -31,4 +31,12 @@ public interface FloorDao {
      * @return
      */
     FloorInfo floorIsRight(@Param("buildCode") String buildCode, @Param("floorCode")Integer floorCode);
+
+
+    /**
+     * 新增楼层
+     * @param floorInfo
+     * @return
+     */
+    int addFloor(FloorInfo floorInfo);
 }

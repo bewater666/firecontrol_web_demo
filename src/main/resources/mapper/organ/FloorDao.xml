@@ -8,6 +8,10 @@
         <result property="floorName" column="floor_name" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <insert id="addFloor">
+        INSERT INTO tb_floor(build_code,floor_code,floor_name) VALUES (#{buildCode},#{floorCode},#{floorName})
+    </insert>
+
 
     <select id="listByBuildCode" resultMap="BaseMap">
         SELECT id,build_code,floor_code,floor_name FROM tb_floor
