@@ -146,47 +146,51 @@ public class DeviceService {
      * 设备类型由前端  通过上下文获取
      * @return
      */
-    public ResultBean findNewMeasure(String deviceCode,String deviceType){
-        DeviceInfo one = deviceInfoDao.findOne(deviceCode);
-        if (one==null){
-            throw new CustomException("该设备编号不存在");
-        }
-        String deviceType1 = one.getDeviceType();
-        if (!deviceType1.equals(deviceType)){
-            throw new CustomException("设备类型不匹配");
-        }
-        if (deviceType.equals("01")){
-            List<Device01> device01s = device01Dao.listByDeviceCode(deviceCode);
-            if (device01s==null){
-                return new ResultBean(200, "该设备暂无检测数据", null);
-            }
-            //取该list的最后一条 最新的一条测试数据
-            return new ResultBean(200, "查询监测数据成功", device01s.get(device01s.size()-1));
-        }
-        if (deviceType.equals("02")){
-            List<Device02> device02s = device02Dao.listByDeviceCode(deviceCode);
-            if (device02s==null){
-                return new ResultBean(200, "该设备暂无检测数据", null);
-            }
-            return new ResultBean(200, "查询监测数据成功", device02s.get(device02s.size()-1));
-        }
-        if (deviceType.equals("03")){
-            List<Device03> device03s = device03Dao.listByDeviceCode(deviceCode);
-            if (device03s==null){
-                return new ResultBean(200, "该设备暂无检测数据", null);
-            }
-            return new ResultBean(200, "查询监测数据成功", device03s.get(device03s.size()-1));
-        }
-        return null;
-    }
+//    public ResultBean findNewMeasure(String deviceCode,String deviceType){
+//        DeviceInfo one = deviceInfoDao.findOne(deviceCode);
+//        if (one==null){
+//            throw new CustomException("该设备编号不存在");
+//        }
+//        String deviceType1 = one.getDeviceType();
+//        if (!deviceType1.equals(deviceType)){
+//            throw new CustomException("设备类型不匹配");
+//        }
+//        if (deviceType.equals("01")){
+//            List<Device01> device01s = device01Dao.listByDeviceCode(deviceCode);
+//            if (device01s==null){
+//                return new ResultBean(200, "该设备暂无检测数据", null);
+//            }
+//            //取该list的最后一条 最新的一条测试数据
+//            return new ResultBean(200, "查询监测数据成功", device01s.get(device01s.size()-1));
+//        }
+//        if (deviceType.equals("02")){
+//            List<Device02> device02s = device02Dao.listByDeviceCode(deviceCode);
+//            if (device02s==null){
+//                return new ResultBean(200, "该设备暂无检测数据", null);
+//            }
+//            return new ResultBean(200, "查询监测数据成功", device02s.get(device02s.size()-1));
+//        }
+//        if (deviceType.equals("03")){
+//            List<Device03> device03s = device03Dao.listByDeviceCode(deviceCode);
+//            if (device03s==null){
+//                return new ResultBean(200, "该设备暂无检测数据", null);
+//            }
+//            return new ResultBean(200, "查询监测数据成功", device03s.get(device03s.size()-1));
+//        }
+//        return null;
+//    }
+
 
     /**
-     * 查看某设备下的历史(全部)数据
+     * 根据设备编号查询所有(历史)数据
+     * 注意 这里根据id进行了倒序  所以第一条就是最新的监测数据
+     * @param currentPage 页码
+     * @param pageSize  每页数量
      * @param deviceCode    设备编号
      * @param deviceType    设备类型
      * @return
      */
-    public ResultBean listAllMeasure(String deviceCode,String deviceType){
+    public PageBean listAllMeasure(Integer currentPage,Integer pageSize,String deviceCode,String deviceType){
         DeviceInfo one = deviceInfoDao.findOne(deviceCode);
         if (one==null){
             throw new CustomException("该设备编号不存在");
@@ -197,28 +201,25 @@ public class DeviceService {
         }
         Map<String,Object> map = new HashMap();
         if (deviceType.equals("01")){
+            PageHelper.startPage(currentPage, pageSize);
             List<Device01> device01s = device01Dao.listByDeviceCode(deviceCode);
-            if (device01s==null){
-                return new ResultBean(200, "该设备暂无检测数据", null);
-            }
-            map.put("measureList", device01s);
-            return new ResultBean(200, "查询监测数据成功", map);
+            PageBean<Device01> pageBean = new PageBean<>(currentPage, pageSize, device01Dao.listByDeviceCode(deviceCode).size());
+            pageBean.setItems(device01s);
+            return pageBean;
         }
         if (deviceType.equals("02")){
+            PageHelper.startPage(currentPage, pageSize);
             List<Device02> device02s = device02Dao.listByDeviceCode(deviceCode);
-            if (device02s==null){
-                return new ResultBean(200, "该设备暂无检测数据", null);
-            }
-            map.put("measureList", device02s);
-            return new ResultBean(200, "查询监测数据成功", map);
+            PageBean<Device02> pageBean = new PageBean<>(currentPage, pageSize, device02Dao.listByDeviceCode(deviceCode).size());
+            pageBean.setItems(device02s);
+            return pageBean;
         }
         if (deviceType.equals("03")){
+            PageHelper.startPage(currentPage, pageSize);
             List<Device03> device03s = device03Dao.listByDeviceCode(deviceCode);
-            if (device03s==null){
-                return new ResultBean(200, "该设备暂无检测数据", null);
-            }
-            map.put("measureList", device03s);
-            return new ResultBean(200, "查询监测数据成功", map);
+            PageBean<Device03> pageBean = new PageBean<>(currentPage, pageSize, device03Dao.listByDeviceCode(deviceCode).size());
+            pageBean.setItems(device03s);
+            return pageBean;
         }
         return null;
     }

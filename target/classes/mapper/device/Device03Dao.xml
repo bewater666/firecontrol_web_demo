@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.orient.firecontrol_web_demo.dao.device.Device03Dao">
+    <resultMap id="BaseMap" type="com.orient.firecontrol_web_demo.model.device.Device03">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="deviceCode" column="deviceCode" jdbcType="VARCHAR"/>
+        <result property="branchElecA" column="branchElecA" jdbcType="VARCHAR"/>
+        <result property="branchElecB" column="branchElecB" jdbcType="VARCHAR"/>
+        <result property="branchElecC" column="branchElecC" jdbcType="VARCHAR"/>
+        <result property="branchTempA" column="branchTempA" jdbcType="VARCHAR"/>
+        <result property="branchTempB" column="branchTempB" jdbcType="VARCHAR"/>
+        <result property="branchTempC" column="branchTempC" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    
     <insert id="insertDevice03Measure">
         INSERT INTO tb_device3_measure (deviceCode,branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC)
         VALUES (#{deviceCode},#{branchElecA},#{branchElecB},#{branchElecC},#{branchTempA},#{branchTempB},#{branchTempC})
     </insert>
+    
+    <select id="listByDeviceCode" resultType="com.orient.firecontrol_web_demo.model.device.Device03">
+        SELECT id,deviceCode,branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC FROM tb_device3_measure
+        WHERE deviceCode = #{deviceCode} order By id DESC
+    </select>
 </mapper>

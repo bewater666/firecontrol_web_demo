@@ -14,6 +14,6 @@
     </insert>
     <select id="listByDeviceCode" resultType="com.orient.firecontrol_web_demo.model.device.Device02">
         SELECT id,deviceCode,branchElec,branchTemp FROM tb_device2_measure
-        WHERE deviceCode = #{deviceCode}
+        WHERE deviceCode = #{deviceCode} order By id DESC
     </select>
 </mapper>

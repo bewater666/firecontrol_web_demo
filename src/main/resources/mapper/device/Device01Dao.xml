@@ -21,7 +21,7 @@
     </select>
     <select id="listByDeviceCode" resultType="com.orient.firecontrol_web_demo.model.device.Device01">
         SELECT id,deviceCode,voltageA,voltageB,voltageC,remainElec,boxTemp FROM tb_device1_measure
-        WHERE deviceCode = #{deviceCode}
+        WHERE deviceCode = #{deviceCode} order By id DESC
     </select>
 
 

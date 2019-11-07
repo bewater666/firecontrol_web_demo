@@ -113,27 +113,41 @@ public class DeviceController {
      * 设备类型由前端  通过上下文获取
      * @return
      */
-    @ApiOperation(value = "查询某个设备最新的一条监测数据",notes = "查询某个设备最新的一条监测数据")
-    @GetMapping("/findNewMeasure")
-    @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
-    public ResultBean findNewMeasure(@RequestParam @ApiParam(name = "deviceCode",value = "设备编号",required = true) String deviceCode,
-                                     @RequestParam@ApiParam(name = "deviceType",value = "设备类型",required = true) String deviceType){
-        return deviceService.findNewMeasure(deviceCode, deviceType);
-    }
+//    @ApiOperation(value = "查询某个设备最新的一条监测数据",notes = "查询某个设备最新的一条监测数据")
+//    @GetMapping("/findNewMeasure")
+//    @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
+//    public ResultBean findNewMeasure(@RequestParam @ApiParam(name = "deviceCode",value = "设备编号",required = true) String deviceCode,
+//                                     @RequestParam@ApiParam(name = "deviceType",value = "设备类型",required = true) String deviceType){
+//        return deviceService.findNewMeasure(deviceCode, deviceType);
+//    }
 
 
     /**
-     * 查看某设备下的历史(全部)数据
+     * 根据设备编号查询所有(历史)数据
+     * 注意 这里根据id进行了倒序  所以第一条就是最新的监测数据
+     * @param currentPage 页码
+     * @param pageSize  每页数量
      * @param deviceCode    设备编号
      * @param deviceType    设备类型
      * @return
      */
     @ApiOperation(value = "查看某设备下的历史(全部)数据",notes = "查看某设备下的历史(全部)数据")
-    @GetMapping("/findAllMeasure")
+    @GetMapping("/findAllMeasure/{currentPage}/{pageSize}")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     public ResultBean listAllMeasure(@RequestParam @ApiParam(name = "deviceCode",value = "设备编号",required = true) String deviceCode,
-                                     @RequestParam@ApiParam(name = "deviceType",value = "设备类型",required = true) String deviceType){
-        return deviceService.listAllMeasure(deviceCode, deviceType);
+                                     @RequestParam@ApiParam(name = "deviceType",value = "设备类型",required = true) String deviceType,
+                                     @PathVariable("currentPage")@ApiParam(name = "currentPage",value = "当前页码",required = true) Integer currentPage,
+                                     @PathVariable("pageSize")@ApiParam(name = "pageSize",value = "每页条数",required = true) Integer pageSize){
+        PageBean pageBean = deviceService.listAllMeasure(currentPage, pageSize, deviceCode, deviceType);
+        List items = pageBean.getItems();
+        int thisPageNum = PageCommons.getThisPageNum(currentPage, pageSize, pageBean);
+        Map map = new HashMap();
+        map.put("currentPage",currentPage);
+        map.put("thisPageNum",thisPageNum);
+        map.put("totalNum", pageBean.getTotalNum());
+        map.put("measureList",items);
+        return  new ResultBean(200,"查询成功",map);
+
     }
 
 }
