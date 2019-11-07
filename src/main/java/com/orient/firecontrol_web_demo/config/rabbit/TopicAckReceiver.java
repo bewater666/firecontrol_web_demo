@@ -141,7 +141,15 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                 System.out.println("收到41测量值指令:==="+msg);
                 log.info("建筑物id==="+msg.substring(10, 20));
                 log.info("一共发送了"+msg.substring(27, 28)+"个数据包过来");
-                String data = msg.substring(28, msg.length() - 2);
+                //取出msg里面的计数字符  注意这里倒过来 高字节在前
+                String lengthData = msg.substring(22, 24)+msg.substring(20, 22);
+                //将16进制数据 转成int数据 注意这里要乘以2 因为1=2个字符
+                Integer len = Integer.parseInt(lengthData, 16)*2;
+                //取出拼接进去的时间戳
+                String measureTime = msg.substring(20+len,20+len+19);
+                System.out.println("测量时间:"+measureTime);
+                //这里不要留时间 把时间拿掉 去我们需要的测量数据即可 时间前面拿到就行了
+                String data = msg.substring(28, msg.length() - 21);
                 for (int i = 0; i <data.length();) {
                     String substring = data.substring(i + 7, i + 8);
                     if (substring.equals("1")) {
@@ -180,7 +188,8 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                         System.out.println("配电箱环境温度为===" + boxTemp / 10 + "℃");
                         Device01 device01 = new Device01();
                         device01.setVoltageA(voltageA / 100 + "V").setVoltageB(voltageB / 100 + "V").setVoltageC(voltageC / 100 + "V")
-                                .setRemainElec(remainElec / 10 + "mA").setBoxTemp(boxTemp / 10 + "℃").setDeviceCode(deviceCode);
+                                .setRemainElec(remainElec / 10 + "mA").setBoxTemp(boxTemp / 10 + "℃").setDeviceCode(deviceCode)
+                                .setMeasureTime(measureTime);
                         device01Dao.insertDevice01Measure(device01);
                         i = i + 4 * 7;
                     }
@@ -201,7 +210,8 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                         double branchTemp = Integer.parseInt(T, 16);
                         System.out.println("支路接头温度===" + branchTemp / 10 + "℃");
                         Device02 device02 = new Device02();
-                        device02.setBranchElec(branchElec / 100 + "mA").setBranchTemp(branchTemp / 10 + "℃").setDeviceCode(deviceCode);
+                        device02.setBranchElec(branchElec / 100 + "mA").setBranchTemp(branchTemp / 10 + "℃").setDeviceCode(deviceCode)
+                                .setMeasureTime(measureTime);
                         device02Dao.insertDevice02Measure(device02);
                         i = i + 4 * 4;
                     }
@@ -248,7 +258,8 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                         Device03 device03 = new Device03();
                         device03.setBranchElecA(branchElecA / 100 + "mA").setBranchElecB(branchElecB / 100 + "mA")
                                 .setBranchElecC(branchElecC / 100 + "mA").setBranchTempA(branchTempA / 10 + "℃")
-                                .setBranchTempB(branchTempB / 10 + "℃").setBranchTempC(branchTempC / 10 + "℃").setDeviceCode(deviceCode);
+                                .setBranchTempB(branchTempB / 10 + "℃").setBranchTempC(branchTempC / 10 + "℃")
+                                .setDeviceCode(deviceCode).setMeasureTime(measureTime);
                         device03Dao.insertDevice03Measure(device03);
                         i = i + 4 * 8;
                     }
@@ -283,11 +294,11 @@ public class TopicAckReceiver implements ChannelAwareMessageListener {
                     }
                     i = i+8;
                 }
-
             }
             if (msg.substring(24, 26).equals("60")){//对时指令
                 System.out.println("收到60对时指令:==="+msg);
             }
+
             channel.basicAck(deliveryTag, true);//是否批量. true：将一次性拒绝所有小于deliveryTag的消息。
         } catch (Exception e) {
             channel.basicReject(deliveryTag, true);//为true会重新放回队列

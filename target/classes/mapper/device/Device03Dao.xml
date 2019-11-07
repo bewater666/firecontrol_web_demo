@@ -10,16 +10,17 @@
         <result property="branchTempA" column="branchTempA" jdbcType="VARCHAR"/>
         <result property="branchTempB" column="branchTempB" jdbcType="VARCHAR"/>
         <result property="branchTempC" column="branchTempC" jdbcType="VARCHAR"/>
+        <result property="measureTime" column="measureTime" jdbcType="VARCHAR"/>
     </resultMap>
     
     
     <insert id="insertDevice03Measure">
-        INSERT INTO tb_device3_measure (deviceCode,branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC)
-        VALUES (#{deviceCode},#{branchElecA},#{branchElecB},#{branchElecC},#{branchTempA},#{branchTempB},#{branchTempC})
+        INSERT INTO tb_device3_measure (deviceCode,branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC,measureTime)
+        VALUES (#{deviceCode},#{branchElecA},#{branchElecB},#{branchElecC},#{branchTempA},#{branchTempB},#{branchTempC},#{measureTime})
     </insert>
     
     <select id="listByDeviceCode" resultType="com.orient.firecontrol_web_demo.model.device.Device03">
-        SELECT id,deviceCode,branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC FROM tb_device3_measure
+        SELECT id,deviceCode,branchElecA,branchElecB,branchElecC,branchTempA,branchTempB,branchTempC,measureTime FROM tb_device3_measure
         WHERE deviceCode = #{deviceCode} order By id DESC
     </select>
 </mapper>
