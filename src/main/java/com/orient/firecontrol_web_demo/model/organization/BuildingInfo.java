@@ -19,4 +19,13 @@ public class BuildingInfo {
     private String buildCode;
     @ApiModelProperty(value = "建筑物名称",name="buildName",required = true,example = "南京办公室测试建筑4")
     private String buildName;
+
+    @ApiModelProperty(value = "建筑物所在经度",name="longitude",required = true,example = "118.77704")
+    private String longitude;   //建筑物所在经度;
+
+    @ApiModelProperty(value = "建筑物所在纬度",name="latitude",required = true,example = "32.087041")
+    private String latitude;    //建筑物所在纬度;
+
+    @ApiModelProperty(value = "备注信息",name="remark",required = true,example = "备注")
+    private String remark;  //备注
 }

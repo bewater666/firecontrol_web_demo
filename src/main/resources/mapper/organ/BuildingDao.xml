@@ -5,14 +5,18 @@
         <id property="id" column="building_id" jdbcType="INTEGER"/>
         <result property="buildCode" column="buildcode" jdbcType="VARCHAR"/>
         <result property="buildName" column="buildname" jdbcType="VARCHAR"/>
+        <result property="longitude" column="longitude" jdbcType="VARCHAR"/>
+        <result property="latitude" column="latitude" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="column_sql">
-        b.building_id,b.buildcode,b.buildname
+        b.building_id,b.buildcode,b.buildname,b.longitude,b.latitude,b.remark
     </sql>
 
     <insert id="addBuild">
-        INSERT INTO tb_buildinfo (buildcode,buildname) VALUES (#{buildCode},#{buildName})
+        INSERT INTO tb_buildinfo (buildcode,buildname,longitude,latitude,remark)
+        VALUES (#{buildCode},#{buildName},#{longitude},#{latitude},#{remark})
     </insert>
 
     <insert id="addOrgan_build">
@@ -28,6 +32,15 @@
             <if test="buildName !='' and buildName !=null">
                 buildname = #{buildName}
             </if>
+            <if test="longitude !='' and longitude !=null">
+                longitude = #{longitude},
+            </if>
+            <if test="latitude !='' and latitude !=null">
+                latitude = #{latitude},
+            </if>
+            <if test="remark !='' and remark !=null">
+                remark = #{remark}
+            </if>
         </set>
         WHERE building_id = #{id}
     </update>
@@ -41,15 +54,15 @@
     </select>
 
     <select id="findById" resultMap="BaseMap">
-        SELECT building_id,buildcode,buildname FROM tb_buildinfo WHERE building_id = #{buildingId}
+        SELECT building_id,buildcode,buildname,longitude,latitude,remark FROM tb_buildinfo WHERE building_id = #{buildingId}
     </select>
     <select id="findByBuildCode" resultMap="BaseMap">
-        SELECT building_id,buildcode,buildname FROM tb_buildinfo WHERE buildcode = #{buildCode}
+        SELECT building_id,buildcode,buildname,longitude,latitude,remark FROM tb_buildinfo WHERE buildcode = #{buildCode}
     </select>
     <select id="findByBuildName" resultMap="BaseMap">
-        SELECT building_id,buildcode,buildname FROM tb_buildinfo WHERE buildname = #{buildName}
+        SELECT building_id,buildcode,buildname,longitude,latitude,remark FROM tb_buildinfo WHERE buildname = #{buildName}
     </select>
     <select id="findAll" resultMap="BaseMap">
-        SELECT building_id,buildcode,buildname FROM tb_buildinfo
+        SELECT building_id,buildcode,buildname,longitude,latitude,remark FROM tb_buildinfo
     </select>
 </mapper>

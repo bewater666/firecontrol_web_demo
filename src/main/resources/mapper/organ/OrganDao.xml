@@ -4,26 +4,42 @@
     <resultMap id="BaseMap" type="com.orient.firecontrol_web_demo.model.organization.Organization">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="organizationName" column="organ_name" jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
         <collection property="buildingInfoList" javaType="com.orient.firecontrol_web_demo.model.organization.BuildingInfo">
             <id property="id" column="building_id" jdbcType="INTEGER"/>
             <result property="buildCode" column="buildcode" jdbcType="VARCHAR"/>
             <result property="buildName" column="buildname" jdbcType="VARCHAR"/>
+            <result property="longitude" column="longitude" jdbcType="VARCHAR"/>
+            <result property="latitude" column="latitude" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
 
     <sql id="detail_column">
-        o.id,o.organ_name,b.building_id,b.buildcode,b.buildname
+        o.id,o.organ_name,o.province,o.city,o.remark,b.building_id,b.buildcode,b.buildname,b.longitude,b.latitude,b.remark
     </sql>
 
     <insert id="addOrgan">
-        INSERT INTO tb_organization (organ_name) VALUES (#{organizationName})
+        INSERT INTO tb_organization (organ_name,province,city,remark)
+        VALUES (#{organizationName},#{province},#{city},#{remark})
     </insert>
 
     <update id="updateOrgan">
         UPDATE tb_organization
         <set>
             <if test="organizationName !=null and organizationName !=''">
-                organ_name = #{organizationName}
+                organ_name = #{organizationName},
+            </if>
+            <if test="province !='' and province !=null">
+                province = #{province},
+            </if>
+            <if test="city !='' and city !=null">
+                city = #{city},
+            </if>
+            <if test="remark !='' and remark !=null">
+                remark = #{remark}
             </if>
         </set>
         WHERE id = #{id}

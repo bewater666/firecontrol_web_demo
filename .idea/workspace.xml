@@ -3,21 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="60231d32-1611-4f9a-ba84-ad59859bbe9f" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/rabbit/TopicAckReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/rabbit/TopicAckReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/device/Device01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/device/Device01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/device/Device02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/device/Device02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/device/Device03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/device/Device03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/device/Device01Dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/device/Device01Dao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/device/Device02Dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/device/Device02Dao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/device/Device03Dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/device/Device03Dao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/device/Device01.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/device/Device01.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/device/Device02.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/device/Device02.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/device/Device03.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/device/Device03.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/device/Device01Dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/device/Device01Dao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/device/Device02Dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/device/Device02Dao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/device/Device03Dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/device/Device03Dao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/BuildingInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/BuildingInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/Organization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/organ/BuildingDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/organ/BuildingDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/rabbit/TopicAckReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/config/rabbit/TopicAckReceiver.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TopicAckReceiver.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TopicAckReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/rabbit/TopicAckReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="150" column="44" selection-start-line="150" selection-start-column="44" selection-end-line="150" selection-end-column="44" />
+            <state relative-caret-position="181">
+              <caret line="152" column="52" lean-forward="true" selection-start-line="152" selection-start-column="52" selection-end-line="152" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,10 +32,64 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="BuildingInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/BuildingInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="22" column="58" lean-forward="true" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuildingDao.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/organ/BuildingDao.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="37" selection-start-line="37" selection-end-line="39" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrganDao.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuildingDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/BuildingDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrganDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/OrganDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrganService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/OrganService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-105">
+              <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="SendController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/device/SendController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
+            <state relative-caret-position="484">
               <caret line="30" column="28" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="28" />
             </state>
           </provider>
@@ -69,8 +113,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/log/ErrorLog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/log/SysLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/log/SysLogDao.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/log/SysLogDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/aop/MyLog.java" />
@@ -83,8 +125,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/OrganController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/Organ_BuildDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/OrganDao.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/organ/BuildingDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/page/PageBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/alarm/AlarmInfo.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/alarm/AlarmDao.xml" />
@@ -120,6 +160,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/mapper/device/Device03Dao.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/rabbit/TopicAckReceiver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/Organization.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/BuildingInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/organ/BuildingDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml" />
       </list>
     </option>
   </component>
@@ -164,6 +208,7 @@
     <panes>
       <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -311,6 +356,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="organization" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -359,13 +414,21 @@
             <path>
               <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
               <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="organ" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -557,7 +620,8 @@
       <workItem from="1572917182569" duration="11431000" />
       <workItem from="1573003337758" duration="18973000" />
       <workItem from="1573089520568" duration="13033000" />
-      <workItem from="1573130103230" duration="4006000" />
+      <workItem from="1573130103230" duration="4250000" />
+      <workItem from="1573176289411" duration="4362000" />
     </task>
     <task id="LOCAL-00001" summary="2019-10-30 11:45:00">
       <created>1572407590632</created>
@@ -671,7 +735,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573112656011</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="新增记录测量时间功能">
+      <created>1573134648249</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1573134648249</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -695,7 +766,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="354451000" />
+    <option name="totallyTimeSpent" value="359057000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -712,7 +783,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="调试" order="15" visible="true" weight="0.3437058" />
+      <window_info anchor="bottom" id="调试" order="15" visible="true" weight="0.3437058" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32909605" />
@@ -720,10 +791,10 @@
       <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="消息" order="11" weight="0.3281471" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="运行" order="12" weight="0.32956153" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32956153" />
+      <window_info anchor="bottom" id="运行" order="12" weight="0.32956153" />
       <window_info anchor="right" id="控制板" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33109918" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33579087" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="5" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="7" />
@@ -757,7 +828,8 @@
     <MESSAGE value="在楼层列表就判定楼层状态" />
     <MESSAGE value="加入查询监测数据分页查询" />
     <MESSAGE value="新增楼层添加功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增楼层添加功能" />
+    <MESSAGE value="新增记录测量时间功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增记录测量时间功能" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -818,52 +890,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/BuildingController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/OrganController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/OrganService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.1.10.RELEASE/spring-aop-5.1.10.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="487" selection-start-line="487" selection-end-line="487" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/OrganDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/alarm/AlarmInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -878,13 +908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/alarm/AlarmService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="200" column="30" lean-forward="true" selection-start-line="200" selection-start-column="30" selection-end-line="200" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -920,9 +943,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -954,24 +974,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/BuildingService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/FloorDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/BuildingInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1042,9 +1048,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1122,9 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1172,18 +1172,81 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/device/SendController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
+        <state relative-caret-position="484">
           <caret line="30" column="28" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/rabbit/TopicAckReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="150" column="44" selection-start-line="150" selection-start-column="44" selection-end-line="150" selection-end-column="44" />
+        <state relative-caret-position="181">
+          <caret line="152" column="52" lean-forward="true" selection-start-line="152" selection-start-column="52" selection-end-line="152" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/OrganDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/OrganService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/Organization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-95">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/BuildingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="67" column="28" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/alarm/AlarmService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="166" column="38" selection-start-line="166" selection-start-column="38" selection-end-line="166" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/BuildingDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/BuildingInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="22" column="58" lean-forward="true" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/organ/BuildingDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="37" selection-start-line="37" selection-end-line="39" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
         </state>
       </provider>
     </entry>
