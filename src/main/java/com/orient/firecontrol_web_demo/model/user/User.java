@@ -45,6 +45,18 @@ public class User implements Serializable {
     private Integer organId;  //所属单位id  用户与单位1对1关系
 
     @ApiModelProperty(hidden = true)
+    private String workStatus;  //在岗状态 添加的时候默认是在岗的
+
+    @ApiModelProperty(name = "phoneNumber",value = "电话号码",example = "15891262739",required =true)
+    private String phoneNumber; //电话号码
+
+    @ApiModelProperty(name = "workId",value = "工号",example = "njbgs009",required =true)
+    private String workId; //工号
+
+    @ApiModelProperty(hidden = true)    //为什么设置成true呢  因为再新增用户的时候直接给你判断好了 所以不需要传
+    private String duty; //职务
+
+    @ApiModelProperty(hidden = true)
     private OrganizationDto organization = new OrganizationDto();
 
 }

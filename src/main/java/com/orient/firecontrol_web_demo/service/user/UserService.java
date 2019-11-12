@@ -7,11 +7,13 @@ import com.orient.firecontrol_web_demo.config.jwt.JwtUtil;
 import com.orient.firecontrol_web_demo.config.page.PageBean;
 import com.orient.firecontrol_web_demo.config.password.AesCipherUtil;
 import com.orient.firecontrol_web_demo.config.shiro.UserRealm;
+import com.orient.firecontrol_web_demo.dao.organization.OrganDao;
 import com.orient.firecontrol_web_demo.dao.user.RoleDao;
 import com.orient.firecontrol_web_demo.dao.user.UserDao;
 import com.orient.firecontrol_web_demo.dao.user.UserRoleDao;
 import com.orient.firecontrol_web_demo.model.common.Constant;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
+import com.orient.firecontrol_web_demo.model.organization.Organization;
 import com.orient.firecontrol_web_demo.model.user.Role;
 import com.orient.firecontrol_web_demo.model.user.User;
 import com.orient.firecontrol_web_demo.model.user.UserRole;
@@ -42,6 +44,8 @@ public class UserService {
     private UserRoleDao userRoleDao;
     @Autowired
     UserRealm userRealm;
+    @Autowired
+    private OrganDao organDao;
 
 
     /**
@@ -190,6 +194,24 @@ public class UserService {
         if (byUser.get(0).getRoleName().equals("superadmin")){ //若是超级管理员 那这里添加某单位的领导
             //添加的用户默认可用
             user.setEnable(1);
+            //添加的员工状态默认是在岗的
+            user.setWorkStatus("在岗");
+            //superadmin默认只会添加部门领导 所以这里直接塞职位为部门领导 关键在于给哪个部门新增领导
+            user.setDuty("部门领导");
+            //取出传过来的部门id organId 判断这个organId在数据库中是否存在(是否合理)
+            Integer organId = user.getOrganId();
+            Organization byId = organDao.findById(organId);
+            if (byId==null){
+                throw new CustomException("部门Id传入有误,该部门不存在");
+            }
+            //取出该单位所有员工  同一单位员工工号不允许重复
+            List<User> byOrganId = userDao.findByOrganId(organId);
+            for (User user1:
+            byOrganId) {
+                if (user1.getWorkId().equals(user.getWorkId())){    //员工工号重复
+                    throw new CustomException("该部门员工编号已存在,请重新输入");
+                }
+            }
             userDao.addUser(user);
             Integer userId = userDao.findOneByAccount(user.getAccount()).getId();
             UserRole userRole =new UserRole();
@@ -198,19 +220,36 @@ public class UserService {
             return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");
         }
         if (byUser.get(0).getRoleName().equals("admin")){
+            //这里进来的是部门领导 只允许添加安全员和电工用户
+            if (roleId<=2){
+                throw new CustomException("给新增用户设置角色失败(设置权限等级过高)");
+            }
             //这里organId直接获取 前端传错了也没关系
             Integer organIDBy = userDao.findOrganIDBy(account);
             //将要插入的用户信息中的单位id和 操作人的单位id一致
             user.setOrganId(organIDBy);
             //添加的用户默认可用
             user.setEnable(1);
+            //默认在岗
+            user.setWorkStatus("在岗");
+            if (roleId==3){//插入的是安全员
+                user.setDuty("安全员");
+            }
+            if (roleId==4){
+                user.setDuty("电工");
+            }
+            //取出该单位所有员工  同一单位员工工号不允许重复
+            List<User> byOrganId = userDao.findByOrganId(organIDBy);
+            for (User user1:
+                    byOrganId) {
+                if (user1.getWorkId().equals(user.getWorkId())){    //员工工号重复
+                    throw new CustomException("该部门员工编号已存在,请重新输入");
+                }
+            }
             userDao.addUser(user);
             Integer userId = userDao.findOneByAccount(user.getAccount()).getId();
             UserRole userRole =new UserRole();
             userRole.setUserId(userId).setRoleId(roleId);//这里 单位管理员可以添加 两个角色  角色id前端传入
-            if (roleId<=2){
-                throw new CustomException("给新增用户设置角色失败(设置权限等级过高)");
-            }
             userRoleDao.addUser_Role(userRole);
             return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");
         }

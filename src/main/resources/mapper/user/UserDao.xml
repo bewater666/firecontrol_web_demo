@@ -8,6 +8,10 @@
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="regTime" column="regtime" jdbcType="TIMESTAMP"/>
         <result property="enable" column="enable" jdbcType="INTEGER"/>
+        <result property="workStatus" column="workStatus" jdbcType="VARCHAR"/>
+        <result property="phoneNumber" column="phoneNumber" jdbcType="VARCHAR"/>
+        <result property="workId" column="workId" jdbcType="VARCHAR"/>
+        <result property="duty" column="duty" jdbcType="VARCHAR"/>
         <association property="organization" javaType="com.orient.firecontrol_web_demo.model.organization.OrganizationDto">
             <result property="organizationName" column="organ_name" jdbcType="VARCHAR"/>
         </association>
@@ -21,32 +25,39 @@
         <result property="regTime" column="regtime" jdbcType="TIMESTAMP"/>
         <result property="enable" column="enable" jdbcType="INTEGER"/>
         <result property="organId" column="organ_id" jdbcType="INTEGER"/>
+        <result property="workStatus" column="workStatus" jdbcType="VARCHAR"/>
+        <result property="phoneNumber" column="phoneNumber" jdbcType="VARCHAR"/>
+        <result property="workId" column="workId" jdbcType="VARCHAR"/>
+        <result property="duty" column="duty" jdbcType="VARCHAR"/>
     </resultMap>
 
 
     <insert id="addUser" parameterType="com.orient.firecontrol_web_demo.model.user.User">
-        INSERT INTO tb_user (account,password,username,regtime,organ_id,enable) VALUES (#{account},#{password},#{username},#{regTime},#{organId},#{enable})
+        INSERT INTO tb_user (account,password,username,regtime,organ_id,enable,workStatus,phoneNumber,workId,duty)
+        VALUES (#{account},#{password},#{username},#{regTime},#{organId},#{enable},#{workStatus},#{phoneNumber},#{workId},#{duty})
     </insert>
 
     <delete id="deleteUser">
         DELETE FROM tb_user WHERE id = #{id}
     </delete>
     <select id="findOneByAccount" resultMap="BaseMap">
-        SELECT id,account,password,username,regtime,enable,organ_id FROM tb_user WHERE account = #{account}
+        SELECT id,account,password,username,regtime,enable,organ_id,workStatus,phoneNumber,workId,duty FROM tb_user WHERE account = #{account}
     </select>
     <select id="findAll" resultMap="ConnectMap">
-        SELECT u.id,u.account,u.password,u.username,u.regtime,o.organ_name FROM tb_user u LEFT JOIN tb_organization o
+        SELECT u.id,u.account,u.password,u.username,u.regtime,u.workStatus,u.phoneNumber,u.workId,u.duty,o.organ_name
+        FROM tb_user u LEFT JOIN tb_organization o
         ON o.id = u.organ_id
     </select>
     <select id="findByUserId" resultMap="BaseMap">
-        SELECT id,account,password,username,regtime,enable,organ_id FROM tb_user WHERE id = #{id}
+        SELECT id,account,password,username,regtime,enable,organ_id,workStatus,phoneNumber,workId,duty FROM tb_user WHERE id = #{id}
     </select>
     <select id="findOrganIDBy" resultType="java.lang.Integer">
         SELECT organ_id FROM tb_user WHERE account = #{account}
     </select>
 
     <select id="findByOrganId" resultMap="ConnectMap">
-        SELECT u.id,u.account,u.password,u.username,u.regtime,o.organ_name FROM tb_user u LEFT JOIN tb_organization o
+        SELECT u.id,u.account,u.password,u.username,u.regtime,u.workStatus,u.phoneNumber,u.workId,u.duty,o.organ_name
+        FROM tb_user u LEFT JOIN tb_organization o
         ON o.id = u.organ_id
         WHERE u.organ_id = #{organId}
     </select>

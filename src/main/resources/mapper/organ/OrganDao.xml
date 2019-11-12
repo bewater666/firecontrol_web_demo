@@ -58,7 +58,7 @@
         ON  u.organ_id = o.id
         WHERE u.account = #{account}
     </select>
-    <select id="findByOrganName" resultType="com.orient.firecontrol_web_demo.model.organization.Organization">
+    <select id="findByOrganName" resultMap="BaseMap">
         SELECT <include refid="detail_column"/> FROM tb_organization o LEFT JOIN tb_organ_building ob
         ON ob.organ_id = o.id LEFT JOIN tb_buildinfo b
         ON b.building_id = ob.building_id LEFT JOIN tb_user u
@@ -66,7 +66,7 @@
         WHERE o.organ_name = #{organName}
     </select>
 
-    <select id="findById" resultType="com.orient.firecontrol_web_demo.model.organization.Organization">
+    <select id="findById" resultMap="BaseMap">
         SELECT <include refid="detail_column"/> FROM tb_organization o LEFT JOIN tb_organ_building ob
         ON ob.organ_id = o.id LEFT JOIN tb_buildinfo b
         ON b.building_id = ob.building_id LEFT JOIN tb_user u

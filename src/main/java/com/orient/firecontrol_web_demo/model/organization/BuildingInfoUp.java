@@ -8,7 +8,8 @@ import lombok.Data;
  * @author bewater
  * @version 1.0
  * @date 2019/10/30 10:32
- * @func
+ * @func  建筑修改的bean  为什么要加这个bean  因为为了配合swagger2 使用实体类 前面新增已经用了buildingInfo这个bean
+ * 所以要是这个bean某些字段不需要的话 就需要建一个新的bean  来配合swagger2使用@ApiModelProperty这个注解
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
