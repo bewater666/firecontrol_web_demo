@@ -83,10 +83,23 @@ public class OrganService {
         if (byId==null){
             throw new CustomException("更新单位失败(该单位不存在)");
         }
+        //单位名字可以和原来的不变 但是不允许和其他的重复
+        //原来的单位名字
+        String organName = byId.getOrganizationName();
+        //想要更改的单位名字
+        String organNameUp = organizationDto.getOrganizationName();
+        if (organNameUp.equals(organName)){//单位名字和原来的相同允许修改
+            organizationDto.setOrganizationName(organName);
+        }else{//要是和原来的不相同 那就保证单位名字不重复了
+            Organization byOrganName = organDao.findByOrganName(organNameUp);
+            if (byOrganName!=null){
+                throw new CustomException("该单位名称已存在,请重新输入");
+            }
+        }
         int i = organDao.updateOrgan(organizationDto);
         if (i<=0){
-            throw new CustomException("更新单位名称失败");
+            throw new CustomException("更新单位失败");
         }
-        return new ResultBean(200, "更新单位名称成功", null);
+        return new ResultBean(200, "更新单位成功", null);
     }
 }

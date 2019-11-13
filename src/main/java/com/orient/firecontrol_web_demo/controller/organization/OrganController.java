@@ -58,7 +58,7 @@ public class OrganController {
      * @param organizationDto
      * @return
      */
-    @PostMapping("/update")
+    @PutMapping("/update")
     @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
     @ApiOperation(value = "更新单位信息",notes = "更新单位信息(名称)")
     @MyLog(description = "更新单位信息")
