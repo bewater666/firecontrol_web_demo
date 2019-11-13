@@ -30,7 +30,7 @@
                 buildcode = #{buildCode},
             </if>
             <if test="buildName !='' and buildName !=null">
-                buildname = #{buildName}
+                buildname = #{buildName},
             </if>
             <if test="longitude !='' and longitude !=null">
                 longitude = #{longitude},

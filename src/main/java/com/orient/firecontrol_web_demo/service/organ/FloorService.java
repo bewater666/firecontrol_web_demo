@@ -82,10 +82,15 @@ public class FloorService {
             throw new CustomException("该建筑编号不存在");
         }
         Integer floorCode = floorInfo.getFloorCode();
+        //这里若floorCode为5  那楼层名称FloorName 只能是五楼 这是规范  所以楼层信息以后用户也省去了修改的麻烦
+        if (!(floorCode+"楼").equals(floorInfo.getFloorName())){
+            throw new CustomException("新增楼层名称不符合规范,请重新输入");
+        }
         FloorInfo floorInfo1 = floorDao.floorIsRight(buildCode, floorCode);
         if (floorInfo1!=null){
             throw new CustomException("该建筑已经存在"+floorCode+"楼");
         }
+
         int i = floorDao.addFloor(floorInfo);
         if (i<=0){
             throw new CustomException("新增楼层失败");

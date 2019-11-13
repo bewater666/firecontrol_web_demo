@@ -13,6 +13,7 @@
     </insert>
 
 
+
     <select id="listByBuildCode" resultMap="BaseMap">
         SELECT id,build_code,floor_code,floor_name FROM tb_floor
         WHERE build_code = #{buildCode}

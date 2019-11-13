@@ -73,6 +73,11 @@ public interface BuildingDao {
     List<BuildingInfo> findAll();
 
 
+    /**
+     * 修改建筑物信息 建筑物编号原则上不允许修改 若修改了 会影响代码 编号和设备挂钩
+     * @param buildingInfoUp
+     * @return
+     */
     int updateBuild(BuildingInfoUp buildingInfoUp);
 
 }
