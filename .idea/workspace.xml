@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60231d32-1611-4f9a-ba84-ad59859bbe9f" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserUp.java" afterDir="false" />
+    <list default="true" id="60231d32-1611-4f9a-ba84-ad59859bbe9f" name="默认的" comment="添加单位更新功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/user/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/user/UserDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/orient/firecontrol_web_demo/FirecontrolWebDemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orient/firecontrol_web_demo/FirecontrolWebDemoApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/controller/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/controller/user/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/dao/user/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/dao/user/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/organization/BuildingInfoUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/organization/BuildingInfoUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/service/user/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/user/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/user/UserDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/orient/firecontrol_web_demo/FirecontrolWebDemoApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/orient/firecontrol_web_demo/FirecontrolWebDemoApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/controller/organization/OrganController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/controller/organization/OrganController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/organization/OrganizationDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/model/organization/OrganizationDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/service/organ/OrganService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/orient/firecontrol_web_demo/service/organ/OrganService.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,95 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDao.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/user/UserDao.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="365" column="41" lean-forward="true" selection-start-line="365" selection-start-column="41" selection-end-line="365" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="262" column="115" selection-start-line="262" selection-start-column="115" selection-end-line="262" selection-end-column="115" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserRole.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserRole.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserRoleDao.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/user/UserRoleDao.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserRoleDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserRoleDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="763">
-              <caret line="56" column="29" selection-start-line="25" selection-start-column="3" selection-end-line="56" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserUp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserUp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-65">
+              <caret line="270" column="27" lean-forward="true" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -138,10 +46,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/log/LogService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/BuildingController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/OrganController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/Organ_BuildDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/OrganDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/page/PageBean.java" />
@@ -186,9 +90,13 @@
         <option value="$PROJECT_DIR$/src/main/resources/mapper/user/UserDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserDao.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/orient/firecontrol_web_demo/FirecontrolWebDemoApplicationTests.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserUp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/OrganController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/OrganizationDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/OrganService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/shiro/ShiroConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java" />
       </list>
     </option>
   </component>
@@ -232,7 +140,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -283,17 +190,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="rabbit" type="462c0819:PsiDirectoryNode" />
+              <item name="shiro" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
@@ -303,26 +200,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="device" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="organization" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
@@ -360,37 +237,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="alarm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="device" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
@@ -401,78 +248,6 @@
               <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
               <item name="organization" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="device" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-              <item name="organ" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="firecontrol_web_demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="firecontrol_web_demo" type="b2602c69:ProjectViewProjectNode" />
@@ -504,6 +279,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -701,6 +477,7 @@
       <workItem from="1573435189360" duration="1878000" />
       <workItem from="1573443987510" duration="11614000" />
       <workItem from="1573521933891" duration="17167000" />
+      <workItem from="1573607794299" duration="3878000" />
     </task>
     <task id="LOCAL-00001" summary="2019-10-30 11:45:00">
       <created>1572407590632</created>
@@ -835,7 +612,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573524110624</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="添加用户更新功能">
+      <created>1573607830170</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1573607830170</updated>
+    </task>
+    <task id="LOCAL-00021" summary="添加单位更新功能">
+      <created>1573609408974</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1573609408974</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -862,7 +653,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="392409000" />
+    <option name="totallyTimeSpent" value="396287000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -878,7 +669,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="调试" order="15" weight="0.3437058" />
+      <window_info active="true" anchor="bottom" id="调试" order="15" visible="true" weight="0.3437058" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32909605" />
@@ -889,7 +680,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32956153" />
       <window_info anchor="bottom" id="运行" order="12" weight="0.32956153" />
       <window_info anchor="right" id="控制板" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22386059" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22654155" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="5" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="7" />
@@ -926,23 +717,17 @@
     <MESSAGE value="新增记录测量时间功能" />
     <MESSAGE value="单位 建筑新增几个字段" />
     <MESSAGE value="用户新增几个字段 并修改了新增用户接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户新增几个字段 并修改了新增用户接口" />
+    <MESSAGE value="添加用户更新功能" />
+    <MESSAGE value="添加单位更新功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加单位更新功能" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java</url>
-          <line>291</line>
-          <properties />
-          <option name="timeStamp" value="155" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="156" />
+      <option name="time" value="157" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -995,20 +780,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/device/Device03Dao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/device/DeviceInfoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/device/DeviceInfoDao.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="902">
@@ -1156,13 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/Organization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/BuildingService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -1177,13 +941,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/OrganizationDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.10.RELEASE/spring-web-5.1.10.RELEASE.jar!/org/springframework/http/HttpStatus.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -1195,34 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1098">
           <caret line="89" column="47" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/OrganDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/OrganService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/OrganController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-161">
-          <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -1277,21 +1006,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="946">
           <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/user/UserDao.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="2112">
           <caret line="96" column="16" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="763">
+        <state relative-caret-position="1078">
           <caret line="56" column="29" selection-start-line="25" selection-start-column="3" selection-end-line="56" selection-end-column="29" />
         </state>
       </provider>
@@ -1305,36 +1034,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/user/UserRoleDao.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
+        <state relative-caret-position="132">
           <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/user/UserRoleDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
+        <state relative-caret-position="704">
           <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserRole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
+        <state relative-caret-position="286">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="262" column="115" selection-start-line="262" selection-start-column="115" selection-end-line="262" selection-end-column="115" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/user/UserUp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        <state relative-caret-position="836">
+          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1350,8 +1072,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/user/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="365" column="41" lean-forward="true" selection-start-line="365" selection-start-column="41" selection-end-line="365" selection-end-column="41" />
+        <state relative-caret-position="1182">
+          <caret line="265" column="47" selection-start-line="265" selection-start-column="47" selection-end-line="265" selection-end-column="47" />
+          <folding>
+            <element signature="method#listUser#0;class#UserService#0" />
+            <element signature="method#changUserStatus#0;class#UserService#0" />
+            <element signature="method#saveUserRole#0;class#UserService#0" />
+            <element signature="method#checkRoles#0;class#UserService#0" />
+            <element signature="method#addUser#0;class#UserService#0" />
+            <element signature="method#updateUser#0;class#UserService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/Organization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="31" column="32" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="31" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/organization/OrganController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="61" column="71" lean-forward="true" selection-start-line="61" selection-start-column="71" selection-end-line="61" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/dao/organization/OrganDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/organ/OrganDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="6" column="74" lean-forward="true" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/service/organ/OrganService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="98" column="32" lean-forward="true" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/jwt/JwtFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3607">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/config/shiro/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="88" column="59" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/model/organization/OrganizationDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="15" column="77" lean-forward="true" selection-start-line="15" selection-start-column="77" selection-end-line="15" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/orient/firecontrol_web_demo/controller/user/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-65">
+          <caret line="270" column="27" lean-forward="true" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="27" />
         </state>
       </provider>
     </entry>

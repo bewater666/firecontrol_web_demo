@@ -17,7 +17,9 @@ import com.orient.firecontrol_web_demo.model.user.*;
 import com.orient.firecontrol_web_demo.service.user.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -264,6 +266,19 @@ public class UserController {
         return userService.updateUser(userUp);
     }
 
+    @ApiOperation(value = "用户登出",notes = "用户登出接口,需登录后访问")
+    @GetMapping("/loginOut")
+    @RequiresAuthentication
+    public ResultBean loginOut(){
+        //获得当前登录的账户
+        String account = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT);
+        if (JedisUtil.exists(Constant.PREFIX_SHIRO_REFRESH_TOKEN + account)) {
+            if (JedisUtil.delKey(Constant.PREFIX_SHIRO_REFRESH_TOKEN + account) > 0) {
+                return new ResultBean(HttpStatus.OK.value(), account+"登出成功", null);
+            }
+        }
+        throw new CustomException("该用户登录已过期");
+    }
 }
 
 
