@@ -1,6 +1,7 @@
 package com.orient.firecontrol_web_demo.dao.user;
 
 import com.orient.firecontrol_web_demo.model.user.User;
+import com.orient.firecontrol_web_demo.model.user.UserUp;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -42,4 +43,12 @@ public interface UserDao {
      * @return
      */
     int changeUserStatus(Integer id);
+
+
+    /**
+     * 更新用户信息
+     * @param userUp
+     * @return
+     */
+    int update(UserUp userUp);
 }

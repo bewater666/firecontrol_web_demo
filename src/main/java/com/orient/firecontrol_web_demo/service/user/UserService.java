@@ -17,6 +17,7 @@ import com.orient.firecontrol_web_demo.model.organization.Organization;
 import com.orient.firecontrol_web_demo.model.user.Role;
 import com.orient.firecontrol_web_demo.model.user.User;
 import com.orient.firecontrol_web_demo.model.user.UserRole;
+import com.orient.firecontrol_web_demo.model.user.UserUp;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -197,7 +198,7 @@ public class UserService {
             //添加的员工状态默认是在岗的
             user.setWorkStatus("在岗");
             //superadmin默认只会添加部门领导 所以这里直接塞职位为部门领导 关键在于给哪个部门新增领导
-            user.setDuty("部门领导");
+            user.setDuty("单位领导");
             //取出传过来的部门id organId 判断这个organId在数据库中是否存在(是否合理)
             Integer organId = user.getOrganId();
             Organization byId = organDao.findById(organId);
@@ -253,6 +254,136 @@ public class UserService {
             userRoleDao.addUser_Role(userRole);
             return new ResultBean(HttpStatus.OK.value(), "新增成功(Insert Success)");
         }
+        return null;
+    }
+
+    /**
+     * 修改用户信息  默认superadmin修改admin用户   admin修改单位员工账户
+     * @param userUp
+     * @return
+     */
+    @Transactional
+    public ResultBean updateUser(UserUp userUp){
+        //修改之前的用户信息
+        User byUserId = userDao.findByUserId(userUp.getId());
+        if (byUserId.getAccount().equals(userUp.getAccount())){ //修改之后的账户和原来账户名的相同 允许
+            userUp.setAccount(byUserId.getAccount());
+        }else{
+            // 修改之后的账户名不能重复
+            User oneByAccount = userDao.findOneByAccount(userUp.getAccount());
+            if (oneByAccount != null && StringUtil.isNotBlank(oneByAccount.getPassword())) {
+                throw new CustomException("该账户名已存在,修改失败");
+            }
+        }
+        //修改密码 工号 职务的时候需要注意  默认用户的所属的单位id organId不可修改
+        // 密码以帐号+密码的形式进行AES加密
+        if (userUp.getPassword().length() > Constant.PASSWORD_MAX_LEN) {
+            throw new CustomException("密码不得超过8位");
+        }
+        String key = AesCipherUtil.enCrypto(userUp.getAccount() + userUp.getPassword());
+        userUp.setPassword(key);
+        //修改工号  工号在单位中不允许重复
+        //获取要修改的用户的单位id
+        Integer organId = byUserId.getOrganId();
+        //该单位下的员工列表
+        List<User> byOrganId = userDao.findByOrganId(organId);
+        //修改之前的工号  和之前工号一样的话是允许修改保存的
+        String workId =byUserId.getWorkId();
+        if (userUp.getWorkId().equals(workId)){ //工号跟原来一样 原则可以
+            userUp.setWorkId(workId);   //工号不变
+        }else { //和原来工号不一样时
+            for (User user:
+                 byOrganId) {
+                if (user.getWorkId().equals(userUp.getWorkId())){
+                    throw new CustomException("该工号在该单位中已存在,请重新输入");
+                }
+            }
+        }
+        //修改职务
+        //拿到当前登录的账户
+        String account = JwtUtil.getClaim(SecurityUtils.getSubject().getPrincipals().toString(), Constant.ACCOUNT); //获得当前登录的用户
+        //根据账户获得它具有的角色列表
+        List<Role> byUser = roleDao.findByUser(account);
+        //我这里一个账户只有一个角色  所以取第一个就好
+        if (byUser.get(0).getRoleName().equals("superadmin")){ //超级管理员 他有三个选择 将用户职务修改成单位领导\安全员\电工
+            //获得传进来的职务
+            String duty = userUp.getDuty();
+            //用户原来的职务
+            String dutyOri = byUserId.getDuty();
+            if (duty.equals(dutyOri)){ //若和原来的职务相等  则用户角色不做修改 直接保存即可
+                userUp.setDuty(dutyOri);
+                int update = userDao.update(userUp);
+                if (update<=0){
+                    throw new CustomException("修改失败");
+                }
+                return new ResultBean(200, "修改成功", null);
+            }else{  //若和原来职务不一样  那么用户角色就要做修改了
+                if (duty.equals("单位领导")){
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(byUserId.getId());
+                    userRole.setRoleId(2);
+                    userRoleDao.updateUser_Role(userRole);
+                }else
+                if (duty.equals("安全员")){
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(byUserId.getId());
+                    userRole.setRoleId(3);
+                    userRoleDao.updateUser_Role(userRole);
+                }else
+                if (duty.equals("电工")){
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(byUserId.getId());
+                    userRole.setRoleId(4);
+                    userRoleDao.updateUser_Role(userRole);
+                }else{
+                    throw new CustomException("该职务不存在");
+                }
+                int update = userDao.update(userUp);
+                if (update<=0){
+                    throw new CustomException("修改失败");
+                }
+                return new ResultBean(200, "修改成功", null);
+
+            }
+        }
+        if (byUser.get(0).getRoleName().equals("admin")){ //单位领导 他有2个选择 将用户职务修改成安全员\电工
+            //获得传进来的职务
+            String duty = userUp.getDuty();
+            //用户原来的职务
+            String dutyOri = byUserId.getDuty();
+            if (duty.equals(dutyOri)){ //若和原来的职务相等  则用户角色不做修改 直接保存即可
+                userUp.setDuty(dutyOri);
+                int update = userDao.update(userUp);
+                if (update<=0){
+                    throw new CustomException("修改失败");
+                }
+                return new ResultBean(200, "修改成功", null);
+            }else{  //若和原来职务不一样  那么用户角色就要做修改了
+                if (duty.equals("安全员")){
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(byUserId.getId());
+                    userRole.setRoleId(3);
+                    userRoleDao.updateUser_Role(userRole);
+                }else
+                if (duty.equals("电工")){
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(byUserId.getId());
+                    userRole.setRoleId(4);
+                    userRoleDao.updateUser_Role(userRole);
+                }else{
+                    throw new CustomException("该职务不存在");
+                }
+                int update = userDao.update(userUp);
+                if (update<=0){
+                    throw new CustomException("修改失败");
+                }
+                return new ResultBean(200, "修改成功", null);
+
+            }
+
+        }
+
+
         return null;
     }
 

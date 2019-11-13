@@ -13,10 +13,7 @@ import com.orient.firecontrol_web_demo.dao.user.UserDao;
 import com.orient.firecontrol_web_demo.dao.user.UserRoleDao;
 import com.orient.firecontrol_web_demo.model.common.Constant;
 import com.orient.firecontrol_web_demo.model.common.ResultBean;
-import com.orient.firecontrol_web_demo.model.user.LoginUser;
-import com.orient.firecontrol_web_demo.model.user.User;
-import com.orient.firecontrol_web_demo.model.user.UserDto;
-import com.orient.firecontrol_web_demo.model.user.UserRole;
+import com.orient.firecontrol_web_demo.model.user.*;
 import com.orient.firecontrol_web_demo.service.user.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -257,6 +254,14 @@ public class UserController {
     @MyLog(description = "修改用户角色")
     public ResultBean saveUserRole(@RequestBody @ApiParam(value = "传入json格式",name = "UserRole实体类",required = true) UserRole userRole){
         return userService.saveUserRole(userRole);
+    }
+
+    @ApiOperation(value = "修改用户",notes = "修改用户信息接口")
+    @PutMapping("/update")
+    @MyLog(description = "修改用户信息")
+    @RequiresRoles(value = {"superadmin","admin"},logical = Logical.OR)
+    public ResultBean updateUser(@RequestBody @ApiParam(value = "传入json格式",name = "user实体类",required = true) UserUp userUp){
+        return userService.updateUser(userUp);
     }
 
 }

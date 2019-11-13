@@ -44,9 +44,9 @@
         SELECT id,account,password,username,regtime,enable,organ_id,workStatus,phoneNumber,workId,duty FROM tb_user WHERE account = #{account}
     </select>
     <select id="findAll" resultMap="ConnectMap">
-        SELECT u.id,u.account,u.password,u.username,u.regtime,u.workStatus,u.phoneNumber,u.workId,u.duty,o.organ_name
+        SELECT u.id,u.account,u.password,u.username,u.regtime,u.enable,u.workStatus,u.phoneNumber,u.workId,u.duty,o.organ_name
         FROM tb_user u LEFT JOIN tb_organization o
-        ON o.id = u.organ_id
+        ON o.id = u.organ_id ORDER BY u.id ASC
     </select>
     <select id="findByUserId" resultMap="BaseMap">
         SELECT id,account,password,username,regtime,enable,organ_id,workStatus,phoneNumber,workId,duty FROM tb_user WHERE id = #{id}
@@ -56,7 +56,7 @@
     </select>
 
     <select id="findByOrganId" resultMap="ConnectMap">
-        SELECT u.id,u.account,u.password,u.username,u.regtime,u.workStatus,u.phoneNumber,u.workId,u.duty,o.organ_name
+        SELECT u.id,u.account,u.password,u.username,u.regtime,u.enable,u.workStatus,u.phoneNumber,u.workId,u.duty,o.organ_name
         FROM tb_user u LEFT JOIN tb_organization o
         ON o.id = u.organ_id
         WHERE u.organ_id = #{organId}
@@ -66,6 +66,34 @@
     <update id="changeUserStatus">
         UPDATE tb_user
         SET enable = (CASE WHEN enable = 1 THEN 0 ELSE 1 END)
+        WHERE id = #{id}
+    </update>
+
+    <update id="update">
+        UPDATE tb_user
+        <set>
+            <if test="account !='' and account !=null">
+                account = #{account},
+            </if>
+            <if test="password !='' and password !=null">
+                password = #{password},
+            </if>
+            <if test="username !='' and username !=null">
+                username = #{username},
+            </if>
+            <if test="workStatus !='' and workStatus !=null">
+                workStatus = #{workStatus},
+            </if>
+            <if test="phoneNumber !='' and phoneNumber !=null">
+                phoneNumber = #{phoneNumber},
+            </if>
+            <if test="workId !='' and workId !=null">
+                workId = #{workId},
+            </if>
+            <if test="duty !='' and duty !=null">
+                duty = #{duty}
+            </if>
+        </set>
         WHERE id = #{id}
     </update>
 </mapper>
